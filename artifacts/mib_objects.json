@@ -1,0 +1,2120 @@
+[
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3",
+    "name": "dms",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1",
+    "name": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.1",
+    "name": "dmsSignAccess",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.2",
+    "name": "dmsSignType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.3",
+    "name": "dmsSignHeight",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.4",
+    "name": "dmsSignWidth",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.5",
+    "name": "dmsHorizontalBorder",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.6",
+    "name": "dmsVerticalBorder",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.7",
+    "name": "dmsLegend",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.8",
+    "name": "dmsBeaconType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.1.9",
+    "name": "dmsSignTechnology",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsSignCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2",
+    "name": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.1",
+    "name": "vmsCharacterHeightPixels",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.2",
+    "name": "vmsCharacterWidthPixels",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.3",
+    "name": "vmsSignHeightPixels",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.4",
+    "name": "vmsSignWidthPixels",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.5",
+    "name": "vmsHorizontalPitch",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.6",
+    "name": "vmsVerticalPitch",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.2.7",
+    "name": "monochromeColor",
+    "syntax": "OCTET STRING (SIZE (6))",
+    "access": "read-only",
+    "parent": "vmsCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3",
+    "name": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.1",
+    "name": "numFonts",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2",
+    "name": "fontTable",
+    "syntax": "SEQUENCE OF FontEntry",
+    "access": "not-accessible",
+    "parent": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1",
+    "name": "fontEntry",
+    "syntax": "FontEntry",
+    "access": "not-accessible",
+    "parent": "fontTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.1",
+    "name": "fontIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.2",
+    "name": "fontNumber",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.3",
+    "name": "fontName",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.4",
+    "name": "fontHeight",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.5",
+    "name": "fontCharSpacing",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.6",
+    "name": "fontLineSpacing",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.7",
+    "name": "fontVersionID",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.2.1.8",
+    "name": "fontStatus",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "fontEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.3",
+    "name": "maxFontCharacters",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.4",
+    "name": "characterTable",
+    "syntax": "SEQUENCE OF CharacterEntry",
+    "access": "not-accessible",
+    "parent": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.4.1",
+    "name": "characterEntry",
+    "syntax": "CharacterEntry",
+    "access": "not-accessible",
+    "parent": "characterTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.4.1.1",
+    "name": "characterNumber",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "characterEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.4.1.2",
+    "name": "characterWidth",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "characterEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.4.1.3",
+    "name": "characterBitmap",
+    "syntax": "OCTET STRING",
+    "access": "read-write",
+    "parent": "characterEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.3.5",
+    "name": "fontMaxCharacterSize",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "fontDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4",
+    "name": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.1",
+    "name": "defaultBackgroundColor",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.2",
+    "name": "defaultForegroundColor",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.3",
+    "name": "defaultFlashOn",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.4",
+    "name": "defaultFlashOff",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.5",
+    "name": "defaultFont",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.6",
+    "name": "defaultJustificationLine",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.7",
+    "name": "defaultJustificationPage",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.8",
+    "name": "defaultPageOnTime",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.9",
+    "name": "defaultPageOffTime",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.10",
+    "name": "defaultCharacterSet",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.11",
+    "name": "dmsColorScheme",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.12",
+    "name": "defaultBackgroundRGB",
+    "syntax": "OCTET STRING (SIZE (1 | 3))",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.13",
+    "name": "defaultForegroundRGB",
+    "syntax": "OCTET STRING (SIZE (1 | 3))",
+    "access": "read-write",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.14",
+    "name": "dmsSupportedMultiTags",
+    "syntax": "OCTET STRING (SIZE (4))",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.15",
+    "name": "dmsMaxNumberPages",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.16",
+    "name": "dmsMaxMultiStringLength",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.17",
+    "name": "defaultFlashOnActivate",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.18",
+    "name": "defaultFlashOffActivate",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.19",
+    "name": "defaultFontActivate",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.20",
+    "name": "defaultJustificationLineActivate",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.21",
+    "name": "defaultJustificationPageActivate",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.22",
+    "name": "defaultPageOnTimeActivate",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.23",
+    "name": "defaultPageOffTimeActivate",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.24",
+    "name": "defaultBackgroundRGBActivate",
+    "syntax": "OCTET STRING (SIZE (1 | 3))",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.4.25",
+    "name": "defaultForegroundRGBActivate",
+    "syntax": "OCTET STRING (SIZE (1 | 3))",
+    "access": "read-only",
+    "parent": "multiCfg",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5",
+    "name": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.1",
+    "name": "dmsNumPermanentMsg",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.2",
+    "name": "dmsNumChangeableMsg",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.3",
+    "name": "dmsMaxChangeableMsg",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.4",
+    "name": "dmsFreeChangeableMemory",
+    "syntax": "INTEGER (0..4294967295)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.5",
+    "name": "dmsNumVolatileMsg",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.6",
+    "name": "dmsMaxVolatileMsg",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.7",
+    "name": "dmsFreeVolatileMemory",
+    "syntax": "INTEGER (0..4294967295)",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8",
+    "name": "dmsMessageTable",
+    "syntax": "SEQUENCE OF DmsMessageEntry",
+    "access": "not-accessible",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1",
+    "name": "dmsMessageEntry",
+    "syntax": "DmsMessageEntry",
+    "access": "not-accessible",
+    "parent": "dmsMessageTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.1",
+    "name": "dmsMessageMemoryType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.2",
+    "name": "dmsMessageNumber",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.3",
+    "name": "dmsMessageMultiString",
+    "syntax": "OCTET STRING",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.4",
+    "name": "dmsMessageOwner",
+    "syntax": "OwnerString",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.5",
+    "name": "dmsMessageCRC",
+    "syntax": "INTEGER(0..65535)",
+    "access": "read-only",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.6",
+    "name": "dmsMessageBeacon",
+    "syntax": "INTEGER (0..1)",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.7",
+    "name": "dmsMessagePixelService",
+    "syntax": "INTEGER (0..1)",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.8",
+    "name": "dmsMessageRunTimePriority",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.8.1.9",
+    "name": "dmsMessageStatus",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "dmsMessageEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.5.9",
+    "name": "dmsValidateMessageError",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsMessage",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6",
+    "name": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.1",
+    "name": "dmsControlMode",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.2",
+    "name": "dmsSWReset",
+    "syntax": "INTEGER (0..1)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.3",
+    "name": "dmsActivateMessage",
+    "syntax": "MessageActivationCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.4",
+    "name": "dmsMessageTimeRemaining",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.5",
+    "name": "dmsMsgTableSource",
+    "syntax": "MessageIDCode",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.6",
+    "name": "dmsMsgRequesterID",
+    "syntax": "IpAddress",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.7",
+    "name": "dmsMsgSourceMode",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.8",
+    "name": "dmsShortPowerRecoveryMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.9",
+    "name": "dmsLongPowerRecoveryMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.10",
+    "name": "dmsShortPowerLossTime",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.11",
+    "name": "dmsResetMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.12",
+    "name": "dmsCommunicationsLossMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.13",
+    "name": "dmsTimeCommLoss",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.14",
+    "name": "dmsPowerLossMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.15",
+    "name": "dmsEndDurationMessage",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.16",
+    "name": "dmsMemoryMgmt",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.17",
+    "name": "dmsActivateMsgError",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.18",
+    "name": "dmsMultiSyntaxError",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.19",
+    "name": "dmsMultiSyntaxErrorPosition",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.20",
+    "name": "dmsMultiOtherErrorDescription",
+    "syntax": "DisplayString (SIZE (0..50))",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.21",
+    "name": "vmsPixelServiceDuration",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.22",
+    "name": "vmsPixelServiceFrequency",
+    "syntax": "INTEGER (0..1440)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.23",
+    "name": "vmsPixelServiceTime",
+    "syntax": "INTEGER (0..1440)",
+    "access": "read-write",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.24",
+    "name": "dmsActivateErrorMsgCode",
+    "syntax": "MessageActivationCode",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.6.25",
+    "name": "dmsActivateMessageState",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "signControl",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7",
+    "name": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.1",
+    "name": "dmsIllumControl",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.2",
+    "name": "dmsIllumMaxPhotocellLevel",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.3",
+    "name": "dmsIllumPhotocellLevelStatus",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.4",
+    "name": "dmsIllumNumBrightLevels",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.5",
+    "name": "dmsIllumBrightLevelStatus",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.6",
+    "name": "dmsIllumManLevel",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.7",
+    "name": "dmsIllumBrightnessValues",
+    "syntax": "OCTET STRING",
+    "access": "read-write",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.8",
+    "name": "dmsIllumBrightnessValuesError",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.7.9",
+    "name": "dmsIllumLightOutputStatus",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "illum",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8",
+    "name": "dmsSchedule",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8.1",
+    "name": "numActionTableEntries",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "dmsSchedule",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8.2",
+    "name": "dmsActionTable",
+    "syntax": "SEQUENCE OF DmsActionEntry",
+    "access": "not-accessible",
+    "parent": "dmsSchedule",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8.2.1",
+    "name": "dmsActionEntry",
+    "syntax": "DmsActionEntry",
+    "access": "not-accessible",
+    "parent": "dmsActionTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8.2.1.1",
+    "name": "dmsActionIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "dmsActionEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.8.2.1.2",
+    "name": "dmsActionMsgCode",
+    "syntax": "MessageIDCode",
+    "access": "read-write",
+    "parent": "dmsActionEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9",
+    "name": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.1",
+    "name": "statMultiFieldRows",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.2",
+    "name": "statMultiFieldTable",
+    "syntax": "SEQUENCE OF StatMultiFieldEntry",
+    "access": "not-accessible",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.2.1",
+    "name": "statMultiFieldEntry",
+    "syntax": "StatMultiFieldEntry",
+    "access": "not-accessible",
+    "parent": "statMultiFieldTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.2.1.1",
+    "name": "statMultiFieldIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "statMultiFieldEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.2.1.2",
+    "name": "statMultiFieldCode",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "statMultiFieldEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.2.1.3",
+    "name": "statMultiCurrentFieldValue",
+    "syntax": "OCTET STRING (SIZE (0..50))",
+    "access": "read-only",
+    "parent": "statMultiFieldEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.3",
+    "name": "dmsCurrentSpeed",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.4",
+    "name": "dmsCurrentSpeedLimit",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-write",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.5",
+    "name": "watchdogFailureCount",
+    "syntax": "Counter",
+    "access": "read-only",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.6",
+    "name": "dmsStatDoorOpen",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "dmsStatus",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7",
+    "name": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.1",
+    "name": "shortErrorStatus",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.2",
+    "name": "pixelFailureTableNumRows",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3",
+    "name": "pixelFailureTable",
+    "syntax": "SEQUENCE OF PixelFailureEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1",
+    "name": "pixelFailureEntry",
+    "syntax": "PixelFailureEntry",
+    "access": "not-accessible",
+    "parent": "pixelFailureTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1.1",
+    "name": "pixelFailureDetectionType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "pixelFailureEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1.2",
+    "name": "pixelFailureIndex",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "pixelFailureEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1.3",
+    "name": "pixelFailureXLocation",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "pixelFailureEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1.4",
+    "name": "pixelFailureYLocation",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "pixelFailureEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.3.1.5",
+    "name": "pixelFailureStatus",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "pixelFailureEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.4",
+    "name": "pixelTestActivation",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.5",
+    "name": "lampFailureStuckOn",
+    "syntax": "OCTET STRING (SIZE (0..255))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.6",
+    "name": "lampFailureStuckOff",
+    "syntax": "OCTET STRING (SIZE (0..255))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.7",
+    "name": "lampTestActivation",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.8",
+    "name": "fanFailures",
+    "syntax": "OCTET STRING (SIZE (0..4))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.9",
+    "name": "fanTestActivation",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.10",
+    "name": "controllerErrorStatus",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.11",
+    "name": "dmsPowerFailureStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.12",
+    "name": "dmsPowerNumRows",
+    "syntax": "INTEGER (0..512)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13",
+    "name": "dmsPowerStatusTable",
+    "syntax": "SEQUENCE OF DmsPowerStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1",
+    "name": "dmsPowerStatusEntry",
+    "syntax": "DmsPowerStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsPowerStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.1",
+    "name": "dmsPowerIndex",
+    "syntax": "INTEGER (1..512)",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.2",
+    "name": "dmsPowerDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.3",
+    "name": "dmsPowerMfrStatus",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.4",
+    "name": "dmsPowerStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.5",
+    "name": "dmsPowerVoltage",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.13.1.6",
+    "name": "dmsPowerType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsPowerStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.14",
+    "name": "dmsClimateCtrlStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.16",
+    "name": "dmsClimateCtrlNumRows",
+    "syntax": "INTEGER (0..512)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17",
+    "name": "dmsClimateCtrlStatusTable",
+    "syntax": "SEQUENCE OF DmsClimateCtrlStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1",
+    "name": "dmsClimateCtrlStatusEntry",
+    "syntax": "DmsClimateCtrlStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsClimateCtrlStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.1",
+    "name": "dmsClimateCtrlIndex",
+    "syntax": "INTEGER (1..512)",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.2",
+    "name": "dmsClimateCtrlDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.3",
+    "name": "dmsClimateCtrlMfrStatus",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.4",
+    "name": "dmsClimateCtrlErrorStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.5",
+    "name": "dmsClimateCtrlOnStatus",
+    "syntax": "INTEGER (0..1)",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.6",
+    "name": "dmsClimateCtrlTestActivation",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.7",
+    "name": "dmsClimateCtrlAbortReason",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.17.1.8",
+    "name": "dmsClimateCtrlType",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsClimateCtrlStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.18",
+    "name": "pixelStatusTable",
+    "syntax": "SEQUENCE OF PixelStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.18.1",
+    "name": "pixelStatusEntry",
+    "syntax": "PixelStatusEntry",
+    "access": "not-accessible",
+    "parent": "pixelStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.18.1.1",
+    "name": "dmsPixelStatusIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "pixelStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.18.1.2",
+    "name": "dmsPixelStatus",
+    "syntax": "OCTET STRING (SIZE(1..400))",
+    "access": "read-only",
+    "parent": "pixelStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.19",
+    "name": "dmsPixelFailureTestRows",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.20",
+    "name": "dmsPixelFailureMessageRows",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.23",
+    "name": "dmsLampNumRows",
+    "syntax": "INTEGER (0..2040)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24",
+    "name": "dmsLampStatusTable",
+    "syntax": "SEQUENCE OF DmsLampStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1",
+    "name": "dmsLampStatusEntry",
+    "syntax": "DmsLampStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsLampStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.1",
+    "name": "dmsLampIndex",
+    "syntax": "INTEGER (1..2040)",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.2",
+    "name": "dmsLampDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.3",
+    "name": "dmsLampMfrStatus",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.4",
+    "name": "dmsLampStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.5",
+    "name": "dmsLampPixelTop",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.6",
+    "name": "dmsLampPixelLeft",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.7",
+    "name": "dmsLampPixelBottom",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.24.1.8",
+    "name": "dmsLampPixelRight",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-only",
+    "parent": "dmsLampStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.25",
+    "name": "dmsDrumStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.26",
+    "name": "dmsDrumNumRows",
+    "syntax": "INTEGER (0..16)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27",
+    "name": "dmsDrumStatusTable",
+    "syntax": "SEQUENCE OF DmsDrumStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27.1",
+    "name": "dmsDrumStatusEntry",
+    "syntax": "DmsDrumStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsDrumStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27.1.1",
+    "name": "dmsDrumIndex",
+    "syntax": "INTEGER (1..16)",
+    "access": "read-only",
+    "parent": "dmsDrumStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27.1.2",
+    "name": "dmsDrumDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsDrumStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27.1.3",
+    "name": "dmsDrumMfrStatus",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsDrumStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.27.1.4",
+    "name": "dmsDrumStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsDrumStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.28",
+    "name": "dmsLightSensorStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.29",
+    "name": "dmsLightSensorNumRows",
+    "syntax": "INTEGER (0..16)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30",
+    "name": "dmsLightSensorStatusTable",
+    "syntax": "SEQUENCE OF DmsLightSensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30.1",
+    "name": "dmsLightSensorStatusEntry",
+    "syntax": "DmsLightSensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsLightSensorStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30.1.1",
+    "name": "dmsLightSensorIndex",
+    "syntax": "INTEGER (1..16)",
+    "access": "read-only",
+    "parent": "dmsLightSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30.1.2",
+    "name": "dmsLightSensorDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsLightSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30.1.3",
+    "name": "dmsLightSensorCurrentReading",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsLightSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.30.1.4",
+    "name": "dmsLightSensorStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsLightSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.31",
+    "name": "dmsHumiditySensorStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.32",
+    "name": "dmsHumiditySensorNumRows",
+    "syntax": "INTEGER (0..16)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33",
+    "name": "dmsHumiditySensorStatusTable",
+    "syntax": "SEQUENCE OF DmsHumiditySensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33.1",
+    "name": "dmsHumiditySensorStatusEntry",
+    "syntax": "DmsHumiditySensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsHumiditySensorStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33.1.1",
+    "name": "dmsHumiditySensorIndex",
+    "syntax": "INTEGER (1..16)",
+    "access": "read-only",
+    "parent": "dmsHumiditySensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33.1.2",
+    "name": "dmsHumiditySensorDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsHumiditySensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33.1.3",
+    "name": "dmsHumiditySensorCurrentReading",
+    "syntax": "INTEGER (0..100)",
+    "access": "read-only",
+    "parent": "dmsHumiditySensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.33.1.4",
+    "name": "dmsHumiditySensorStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsHumiditySensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.34",
+    "name": "dmsTempSensorStatusMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.35",
+    "name": "dmsTempSensorNumRows",
+    "syntax": "INTEGER (0..16)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36",
+    "name": "dmsTempSensorStatusTable",
+    "syntax": "SEQUENCE OF DmsTempSensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1",
+    "name": "dmsTempSensorStatusEntry",
+    "syntax": "DmsTempSensorStatusEntry",
+    "access": "not-accessible",
+    "parent": "dmsTempSensorStatusTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.1",
+    "name": "dmsTempSensorIndex",
+    "syntax": "INTEGER (1..16)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.2",
+    "name": "dmsTempSensorDescription",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.3",
+    "name": "dmsTempSensorCurrentReading",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.4",
+    "name": "dmsTempSensorHighWarningTemperature",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.5",
+    "name": "dmsTempSensorLowWarningTemperature",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.6",
+    "name": "dmsTempSensorHighCriticalTemperature",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.7",
+    "name": "dmsTempSensorLowCriticalTemperature",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.36.1.8",
+    "name": "dmsTempSensorStatus",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "dmsTempSensorStatusEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.37",
+    "name": "dmsTempSensorHighestCriticalTempThreshold",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.7.38",
+    "name": "dmsTempSensorLowestCriticalTempThreshold",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statError",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8",
+    "name": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.1",
+    "name": "signVolts",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.2",
+    "name": "lowFuelThreshold",
+    "syntax": "INTEGER (0..100)",
+    "access": "read-write",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.3",
+    "name": "fuelLevel",
+    "syntax": "INTEGER (0..100)",
+    "access": "read-only",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.4",
+    "name": "engineRPM",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.5",
+    "name": "lineVolts",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.8.6",
+    "name": "powerSource",
+    "syntax": "INTEGER",
+    "access": "read-only",
+    "parent": "statPower",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9",
+    "name": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.1",
+    "name": "tempMinCtrlCabinet",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.2",
+    "name": "tempMaxCtrlCabinet",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.3",
+    "name": "tempMinAmbient",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.4",
+    "name": "tempMaxAmbient",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.5",
+    "name": "tempMinSignHousing",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.6",
+    "name": "tempMaxSignHousing",
+    "syntax": "INTEGER (-128..127)",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.7",
+    "name": "tempSensorWarningMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.9.9.8",
+    "name": "tempSensorCriticalTempMap",
+    "syntax": "OCTET STRING (SIZE (0..2))",
+    "access": "read-only",
+    "parent": "statTemp",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10",
+    "name": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.1",
+    "name": "dmsGraphicMaxEntries",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.2",
+    "name": "dmsGraphicNumEntries",
+    "syntax": "INTEGER (0..255)",
+    "access": "read-only",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.3",
+    "name": "dmsGraphicMaxSize",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.4",
+    "name": "availableGraphicMemory",
+    "syntax": "Counter",
+    "access": "read-only",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.5",
+    "name": "dmsGraphicBlockSize",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6",
+    "name": "dmsGraphicTable",
+    "syntax": "SEQUENCE OF DmsGraphicEntry",
+    "access": "not-accessible",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1",
+    "name": "dmsGraphicEntry",
+    "syntax": "DmsGraphicEntry",
+    "access": "not-accessible",
+    "parent": "dmsGraphicTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.1",
+    "name": "dmsGraphicIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.2",
+    "name": "dmsGraphicNumber",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.3",
+    "name": "dmsGraphicName",
+    "syntax": "DisplayString (SIZE (0..64))",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.4",
+    "name": "dmsGraphicHeight",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.5",
+    "name": "dmsGraphicWidth",
+    "syntax": "INTEGER (1..65535)",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.6",
+    "name": "dmsGraphicType",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.7",
+    "name": "dmsGraphicID",
+    "syntax": "INTEGER (0..65535)",
+    "access": "read-only",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.8",
+    "name": "dmsGraphicTransparentEnabled",
+    "syntax": "INTEGER (0..1)",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.9",
+    "name": "dmsGraphicTransparentColor",
+    "syntax": "OCTET STRING (SIZE(1 | 3))",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.6.1.10",
+    "name": "dmsGraphicStatus",
+    "syntax": "INTEGER",
+    "access": "read-write",
+    "parent": "dmsGraphicEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.7",
+    "name": "dmsGraphicBitmapTable",
+    "syntax": "SEQUENCE OF DmsGraphicBitmapEntry",
+    "access": "not-accessible",
+    "parent": "graphicDefinition",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.7.1",
+    "name": "dmsGraphicBitmapEntry",
+    "syntax": "DmsGraphicBitmapEntry",
+    "access": "not-accessible",
+    "parent": "dmsGraphicBitmapTable",
+    "is_table_column": false
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.7.1.1",
+    "name": "dmsGraphicBitmapIndex",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "dmsGraphicBitmapEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.7.1.2",
+    "name": "dmsGraphicBlockNumber",
+    "syntax": "INTEGER (1..255)",
+    "access": "read-only",
+    "parent": "dmsGraphicBitmapEntry",
+    "is_table_column": true
+  },
+  {
+    "oid": "1.3.6.1.4.1.1206.4.2.3.10.7.1.3",
+    "name": "dmsGraphicBlockBitmap",
+    "syntax": "OCTET STRING",
+    "access": "read-write",
+    "parent": "dmsGraphicBitmapEntry",
+    "is_table_column": true
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "network": {
+    "host": "0.0.0.0",
+    "port": 161,
+    "transport": "udp",
+    "read_community": "public",
+    "write_community": "public"
+  },
+  "sign": {
+    "sign_type": "vmsFull",
+    "sign_technology": [
+      "other",
+      "led"
+    ],
+    "sign_height_pixels": 27,
+    "sign_width_pixels": 145,
+    "color_scheme": "color24bit",
+    "max_graphics": 20,
+    "font_management_enabled": true
+  }
+}

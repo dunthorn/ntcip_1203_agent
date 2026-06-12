@@ -1,0 +1,29 @@
+Hello, Claude!
+
+I want you to create an NTCIP 1203 Agent, written in modern, pythonic Python. Here's my vision:
+
+APPLICATION OVERVIEW:
+Build a complete application that simulates a single Dynamic Message Sign complient with the NTCIP 1203 MIB. You can find the MIB in this file: artifacts/1203v0305a.mib. The simulator will be used to test DMS-related features in an Advanced Transportation Management System (ATMS).
+
+CORE FEATURES:
+- Support any other standard MIBs in order to handle common requests, such as the system object tree.
+- Configuration will be stored in a file, and will contain IP address, type of connection (TCP or UDP), port, read-only community, read-write community.
+- Support configuration of additional properties shown in artifacts/config_screenshot.jpg.
+
+TECHNICAL REQUIREMENTS:
+- Python 3.7+ standard library. Use 3rd party libraries sparingly.
+
+DESIGN REQUIREMENTS:
+- Source code formatted using black
+
+SPECIFIC FUNCTIONALITY:
+1. Poll the sign for status
+2. Put a message on the sign
+3. Blank the sign
+Hexadecimal captures of all three of these interactions can be found in the file artifacts/hex_dump_1.txt
+
+4. Respond to requests for additional objects as found in the file artifacts/hex_dump_2.txt
+
+Please create this as a complete, production-ready application. Set up the project structure, implement all features, and make sure everything works together seamlessly.
+
+When you're done, provide instructions on how to run the application and test all features.

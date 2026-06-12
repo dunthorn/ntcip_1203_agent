@@ -1,0 +1,396 @@
+{
+  "fontIndex": 20,
+  "fontNumber": 220,
+  "fontName": "FDOTColorDMS",
+  "fontHeight": 7,
+  "fontCharSpacing": 2,
+  "fontLineSpacing": 3,
+  "fontVersionID": 46639,
+  "fontStatus": 6,
+  "characters": {
+    "32": {
+      "width": 4,
+      "bitmap": "00000000"
+    },
+    "33": {
+      "width": 1,
+      "bitmap": "f2"
+    },
+    "34": {
+      "width": 3,
+      "bitmap": "b68000"
+    },
+    "35": {
+      "width": 5,
+      "bitmap": "52beafa940"
+    },
+    "36": {
+      "width": 5,
+      "bitmap": "23e8e2f880"
+    },
+    "37": {
+      "width": 5,
+      "bitmap": "c644444c60"
+    },
+    "38": {
+      "width": 5,
+      "bitmap": "64a88ac9a0"
+    },
+    "39": {
+      "width": 2,
+      "bitmap": "d800"
+    },
+    "40": {
+      "width": 3,
+      "bitmap": "2a4888"
+    },
+    "41": {
+      "width": 3,
+      "bitmap": "8892a0"
+    },
+    "42": {
+      "width": 5,
+      "bitmap": "012aea9000"
+    },
+    "43": {
+      "width": 5,
+      "bitmap": "0109f21000"
+    },
+    "44": {
+      "width": 2,
+      "bitmap": "00d8"
+    },
+    "45": {
+      "width": 5,
+      "bitmap": "0001f00000"
+    },
+    "46": {
+      "width": 2,
+      "bitmap": "003c"
+    },
+    "47": {
+      "width": 5,
+      "bitmap": "0044444000"
+    },
+    "48": {
+      "width": 5,
+      "bitmap": "74675cc5c0"
+    },
+    "49": {
+      "width": 3,
+      "bitmap": "5924b8"
+    },
+    "50": {
+      "width": 5,
+      "bitmap": "74422223e0"
+    },
+    "51": {
+      "width": 5,
+      "bitmap": "f88820c5c0"
+    },
+    "52": {
+      "width": 5,
+      "bitmap": "11952f8840"
+    },
+    "53": {
+      "width": 5,
+      "bitmap": "fc3c10c5c0"
+    },
+    "54": {
+      "width": 5,
+      "bitmap": "3221e8c5c0"
+    },
+    "55": {
+      "width": 5,
+      "bitmap": "f844442100"
+    },
+    "56": {
+      "width": 5,
+      "bitmap": "7462e8c5c0"
+    },
+    "57": {
+      "width": 5,
+      "bitmap": "7462f08980"
+    },
+    "58": {
+      "width": 2,
+      "bitmap": "3cf0"
+    },
+    "59": {
+      "width": 2,
+      "bitmap": "3cd8"
+    },
+    "60": {
+      "width": 5,
+      "bitmap": "1111041040"
+    },
+    "61": {
+      "width": 5,
+      "bitmap": "003e0f8000"
+    },
+    "62": {
+      "width": 5,
+      "bitmap": "4104111100"
+    },
+    "63": {
+      "width": 5,
+      "bitmap": "7442220080"
+    },
+    "64": {
+      "width": 5,
+      "bitmap": "7442dad5c0"
+    },
+    "65": {
+      "width": 5,
+      "bitmap": "22a31fc620"
+    },
+    "66": {
+      "width": 5,
+      "bitmap": "f252e4a7c0"
+    },
+    "67": {
+      "width": 5,
+      "bitmap": "74610845c0"
+    },
+    "68": {
+      "width": 5,
+      "bitmap": "f25294a7c0"
+    },
+    "69": {
+      "width": 5,
+      "bitmap": "fc21e843e0"
+    },
+    "70": {
+      "width": 5,
+      "bitmap": "fc21e84200"
+    },
+    "71": {
+      "width": 5,
+      "bitmap": "746178c5c0"
+    },
+    "72": {
+      "width": 5,
+      "bitmap": "8c63f8c620"
+    },
+    "73": {
+      "width": 3,
+      "bitmap": "e924b8"
+    },
+    "74": {
+      "width": 5,
+      "bitmap": "084210c5c0"
+    },
+    "75": {
+      "width": 5,
+      "bitmap": "8ca98a4a20"
+    },
+    "76": {
+      "width": 5,
+      "bitmap": "84210843e0"
+    },
+    "77": {
+      "width": 5,
+      "bitmap": "8eeb58c620"
+    },
+    "78": {
+      "width": 5,
+      "bitmap": "8c7359c620"
+    },
+    "79": {
+      "width": 5,
+      "bitmap": "746318c5c0"
+    },
+    "80": {
+      "width": 5,
+      "bitmap": "f463e84200"
+    },
+    "81": {
+      "width": 5,
+      "bitmap": "74631ac9a0"
+    },
+    "82": {
+      "width": 5,
+      "bitmap": "f463ea4a20"
+    },
+    "83": {
+      "width": 5,
+      "bitmap": "7460e0c5c0"
+    },
+    "84": {
+      "width": 5,
+      "bitmap": "f908421080"
+    },
+    "85": {
+      "width": 5,
+      "bitmap": "8c6318c5c0"
+    },
+    "86": {
+      "width": 5,
+      "bitmap": "8c6318a880"
+    },
+    "87": {
+      "width": 5,
+      "bitmap": "8c635aee20"
+    },
+    "88": {
+      "width": 5,
+      "bitmap": "8c54454620"
+    },
+    "89": {
+      "width": 5,
+      "bitmap": "8c54421080"
+    },
+    "90": {
+      "width": 5,
+      "bitmap": "f8444443e0"
+    },
+    "91": {
+      "width": 3,
+      "bitmap": "f24938"
+    },
+    "92": {
+      "width": 5,
+      "bitmap": "0410410400"
+    },
+    "93": {
+      "width": 3,
+      "bitmap": "e49278"
+    },
+    "94": {
+      "width": 5,
+      "bitmap": "22a2000000"
+    },
+    "95": {
+      "width": 5,
+      "bitmap": "00000003e0"
+    },
+    "96": {
+      "width": 3,
+      "bitmap": "888000"
+    },
+    "97": {
+      "width": 5,
+      "bitmap": "001c17c5e0"
+    },
+    "98": {
+      "width": 5,
+      "bitmap": "842d98c7c0"
+    },
+    "99": {
+      "width": 5,
+      "bitmap": "001f0841e0"
+    },
+    "100": {
+      "width": 5,
+      "bitmap": "085b38c5e0"
+    },
+    "101": {
+      "width": 5,
+      "bitmap": "001d1fc1c0"
+    },
+    "102": {
+      "width": 5,
+      "bitmap": "3251c42100"
+    },
+    "103": {
+      "width": 5,
+      "bitmap": "03a31785c0"
+    },
+    "104": {
+      "width": 5,
+      "bitmap": "842d98c620"
+    },
+    "105": {
+      "width": 3,
+      "bitmap": "4324b8"
+    },
+    "106": {
+      "width": 4,
+      "bitmap": "10111960"
+    },
+    "107": {
+      "width": 4,
+      "bitmap": "889aca90"
+    },
+    "108": {
+      "width": 3,
+      "bitmap": "c924b8"
+    },
+    "109": {
+      "width": 5,
+      "bitmap": "003558c620"
+    },
+    "110": {
+      "width": 5,
+      "bitmap": "002d98c620"
+    },
+    "111": {
+      "width": 5,
+      "bitmap": "001d18c5c0"
+    },
+    "112": {
+      "width": 5,
+      "bitmap": "07a31f4200"
+    },
+    "113": {
+      "width": 5,
+      "bitmap": "03e3178420"
+    },
+    "114": {
+      "width": 5,
+      "bitmap": "002d984200"
+    },
+    "115": {
+      "width": 5,
+      "bitmap": "001d0707c0"
+    },
+    "116": {
+      "width": 5,
+      "bitmap": "423c8424c0"
+    },
+    "117": {
+      "width": 5,
+      "bitmap": "002318cda0"
+    },
+    "118": {
+      "width": 5,
+      "bitmap": "002318a880"
+    },
+    "119": {
+      "width": 5,
+      "bitmap": "00231ad540"
+    },
+    "120": {
+      "width": 5,
+      "bitmap": "0022a22a20"
+    },
+    "121": {
+      "width": 5,
+      "bitmap": "04631785c0"
+    },
+    "122": {
+      "width": 5,
+      "bitmap": "003e2223e0"
+    },
+    "123": {
+      "width": 3,
+      "bitmap": "294488"
+    },
+    "124": {
+      "width": 1,
+      "bitmap": "fe"
+    },
+    "125": {
+      "width": 3,
+      "bitmap": "8914a0"
+    },
+    "126": {
+      "width": 5,
+      "bitmap": "edc0000000"
+    },
+    "127": {
+      "width": 5,
+      "bitmap": "ffffffffe0"
+    }
+  }
+}

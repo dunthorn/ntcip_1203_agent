@@ -1,0 +1,830 @@
+{
+  "1.3.6.1.4.1.1206.4.2.3.1.1.0": {
+    "name": "dmsSignAccess",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.2.0": {
+    "name": "dmsSignType",
+    "tag": "INTEGER",
+    "value": 6,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.3.0": {
+    "name": "dmsSignHeight",
+    "tag": "INTEGER",
+    "value": 900,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.4.0": {
+    "name": "dmsSignWidth",
+    "tag": "INTEGER",
+    "value": 4800,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.5.0": {
+    "name": "dmsHorizontalBorder",
+    "tag": "INTEGER",
+    "value": 50,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.6.0": {
+    "name": "dmsVerticalBorder",
+    "tag": "INTEGER",
+    "value": 50,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.7.0": {
+    "name": "dmsLegend",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.8.0": {
+    "name": "dmsBeaconType",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.1.9.0": {
+    "name": "dmsSignTechnology",
+    "tag": "INTEGER",
+    "value": 3,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.1.0": {
+    "name": "vmsCharacterHeightPixels",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.2.0": {
+    "name": "vmsCharacterWidthPixels",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.3.0": {
+    "name": "vmsSignHeightPixels",
+    "tag": "INTEGER",
+    "value": 27,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.4.0": {
+    "name": "vmsSignWidthPixels",
+    "tag": "INTEGER",
+    "value": 145,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.5.0": {
+    "name": "vmsHorizontalPitch",
+    "tag": "INTEGER",
+    "value": 28,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.6.0": {
+    "name": "vmsVerticalPitch",
+    "tag": "INTEGER",
+    "value": 28,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.2.7.0": {
+    "name": "monochromeColor",
+    "tag": "OCTET STRING",
+    "hex": "000000000000",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.3.1.0": {
+    "name": "numFonts",
+    "tag": "INTEGER",
+    "value": 20,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.3.3.0": {
+    "name": "maxFontCharacters",
+    "tag": "INTEGER",
+    "value": 255,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.3.5.0": {
+    "name": "fontMaxCharacterSize",
+    "tag": "INTEGER",
+    "value": 64,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.1.0": {
+    "name": "defaultBackgroundColor",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.2.0": {
+    "name": "defaultForegroundColor",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.3.0": {
+    "name": "defaultFlashOn",
+    "tag": "INTEGER",
+    "value": 5,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.4.0": {
+    "name": "defaultFlashOff",
+    "tag": "INTEGER",
+    "value": 5,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.5.0": {
+    "name": "defaultFont",
+    "tag": "INTEGER",
+    "value": 220,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.6.0": {
+    "name": "defaultJustificationLine",
+    "tag": "INTEGER",
+    "value": 3,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.7.0": {
+    "name": "defaultJustificationPage",
+    "tag": "INTEGER",
+    "value": 3,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.8.0": {
+    "name": "defaultPageOnTime",
+    "tag": "INTEGER",
+    "value": 30,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.9.0": {
+    "name": "defaultPageOffTime",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.10.0": {
+    "name": "defaultCharacterSet",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.11.0": {
+    "name": "dmsColorScheme",
+    "tag": "INTEGER",
+    "value": 4,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.12.0": {
+    "name": "defaultBackgroundRGB",
+    "tag": "OCTET STRING",
+    "hex": "00",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.13.0": {
+    "name": "defaultForegroundRGB",
+    "tag": "OCTET STRING",
+    "hex": "00",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.14.0": {
+    "name": "dmsSupportedMultiTags",
+    "tag": "OCTET STRING",
+    "hex": "ffffffff",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.15.0": {
+    "name": "dmsMaxNumberPages",
+    "tag": "INTEGER",
+    "value": 6,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.16.0": {
+    "name": "dmsMaxMultiStringLength",
+    "tag": "INTEGER",
+    "value": 256,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.17.0": {
+    "name": "defaultFlashOnActivate",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.18.0": {
+    "name": "defaultFlashOffActivate",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.19.0": {
+    "name": "defaultFontActivate",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.20.0": {
+    "name": "defaultJustificationLineActivate",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.21.0": {
+    "name": "defaultJustificationPageActivate",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.22.0": {
+    "name": "defaultPageOnTimeActivate",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.23.0": {
+    "name": "defaultPageOffTimeActivate",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.24.0": {
+    "name": "defaultBackgroundRGBActivate",
+    "tag": "OCTET STRING",
+    "hex": "00",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.4.25.0": {
+    "name": "defaultForegroundRGBActivate",
+    "tag": "OCTET STRING",
+    "hex": "00",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.1.0": {
+    "name": "dmsNumPermanentMsg",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.2.0": {
+    "name": "dmsNumChangeableMsg",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.3.0": {
+    "name": "dmsMaxChangeableMsg",
+    "tag": "INTEGER",
+    "value": 50,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.4.0": {
+    "name": "dmsFreeChangeableMemory",
+    "tag": "INTEGER",
+    "value": 64000,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.5.0": {
+    "name": "dmsNumVolatileMsg",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.6.0": {
+    "name": "dmsMaxVolatileMsg",
+    "tag": "INTEGER",
+    "value": 10,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.7.0": {
+    "name": "dmsFreeVolatileMemory",
+    "tag": "INTEGER",
+    "value": 16000,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.5.9.0": {
+    "name": "dmsValidateMessageError",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.1.0": {
+    "name": "dmsControlMode",
+    "tag": "INTEGER",
+    "value": 4,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.2.0": {
+    "name": "dmsSWReset",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.3.0": {
+    "name": "dmsActivateMessage",
+    "tag": "OCTET STRING",
+    "hex": "ffffff070001000000000000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.4.0": {
+    "name": "dmsMessageTimeRemaining",
+    "tag": "INTEGER",
+    "value": 65535,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.5.0": {
+    "name": "dmsMsgTableSource",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.6.0": {
+    "name": "dmsMsgRequesterID",
+    "tag": "OCTET STRING",
+    "hex": "00000000",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.7.0": {
+    "name": "dmsMsgSourceMode",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.8.0": {
+    "name": "dmsShortPowerRecoveryMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.9.0": {
+    "name": "dmsLongPowerRecoveryMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.10.0": {
+    "name": "dmsShortPowerLossTime",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.11.0": {
+    "name": "dmsResetMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.12.0": {
+    "name": "dmsCommunicationsLossMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.13.0": {
+    "name": "dmsTimeCommLoss",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.14.0": {
+    "name": "dmsPowerLossMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.15.0": {
+    "name": "dmsEndDurationMessage",
+    "tag": "OCTET STRING",
+    "hex": "0700010000",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.16.0": {
+    "name": "dmsMemoryMgmt",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.17.0": {
+    "name": "dmsActivateMsgError",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.18.0": {
+    "name": "dmsMultiSyntaxError",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.19.0": {
+    "name": "dmsMultiSyntaxErrorPosition",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.20.0": {
+    "name": "dmsMultiOtherErrorDescription",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.21.0": {
+    "name": "vmsPixelServiceDuration",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.22.0": {
+    "name": "vmsPixelServiceFrequency",
+    "tag": "INTEGER",
+    "value": 1440,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.23.0": {
+    "name": "vmsPixelServiceTime",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.24.0": {
+    "name": "dmsActivateErrorMsgCode",
+    "tag": "OCTET STRING",
+    "hex": "000000000000000000000000",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.6.25.0": {
+    "name": "dmsActivateMessageState",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.1.0": {
+    "name": "dmsIllumControl",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.2.0": {
+    "name": "dmsIllumMaxPhotocellLevel",
+    "tag": "INTEGER",
+    "value": 1023,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.3.0": {
+    "name": "dmsIllumPhotocellLevelStatus",
+    "tag": "INTEGER",
+    "value": 512,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.4.0": {
+    "name": "dmsIllumNumBrightLevels",
+    "tag": "INTEGER",
+    "value": 16,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.5.0": {
+    "name": "dmsIllumBrightLevelStatus",
+    "tag": "INTEGER",
+    "value": 8,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.6.0": {
+    "name": "dmsIllumManLevel",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.7.0": {
+    "name": "dmsIllumBrightnessValues",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.8.0": {
+    "name": "dmsIllumBrightnessValuesError",
+    "tag": "INTEGER",
+    "value": 1,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.7.9.0": {
+    "name": "dmsIllumLightOutputStatus",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.8.1.0": {
+    "name": "numActionTableEntries",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.1.0": {
+    "name": "statMultiFieldRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.3.0": {
+    "name": "dmsCurrentSpeed",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.4.0": {
+    "name": "dmsCurrentSpeedLimit",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.5.0": {
+    "name": "watchdogFailureCount",
+    "tag": "Counter32",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.6.0": {
+    "name": "dmsStatDoorOpen",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.1.0": {
+    "name": "shortErrorStatus",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.2.0": {
+    "name": "pixelFailureTableNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.4.0": {
+    "name": "pixelTestActivation",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.5.0": {
+    "name": "lampFailureStuckOn",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.6.0": {
+    "name": "lampFailureStuckOff",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.7.0": {
+    "name": "lampTestActivation",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.8.0": {
+    "name": "fanFailures",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.9.0": {
+    "name": "fanTestActivation",
+    "tag": "INTEGER",
+    "value": 2,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.10.0": {
+    "name": "controllerErrorStatus",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.11.0": {
+    "name": "dmsPowerFailureStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.12.0": {
+    "name": "dmsPowerNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.14.0": {
+    "name": "dmsClimateCtrlStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.16.0": {
+    "name": "dmsClimateCtrlNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.19.0": {
+    "name": "dmsPixelFailureTestRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.20.0": {
+    "name": "dmsPixelFailureMessageRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.23.0": {
+    "name": "dmsLampNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.25.0": {
+    "name": "dmsDrumStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.26.0": {
+    "name": "dmsDrumNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.28.0": {
+    "name": "dmsLightSensorStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.29.0": {
+    "name": "dmsLightSensorNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.31.0": {
+    "name": "dmsHumiditySensorStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.32.0": {
+    "name": "dmsHumiditySensorNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.34.0": {
+    "name": "dmsTempSensorStatusMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.35.0": {
+    "name": "dmsTempSensorNumRows",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.37.0": {
+    "name": "dmsTempSensorHighestCriticalTempThreshold",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.7.38.0": {
+    "name": "dmsTempSensorLowestCriticalTempThreshold",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.1.0": {
+    "name": "signVolts",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.2.0": {
+    "name": "lowFuelThreshold",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-write"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.3.0": {
+    "name": "fuelLevel",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.4.0": {
+    "name": "engineRPM",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.5.0": {
+    "name": "lineVolts",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.8.6.0": {
+    "name": "powerSource",
+    "tag": "INTEGER",
+    "value": 4,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.1.0": {
+    "name": "tempMinCtrlCabinet",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.2.0": {
+    "name": "tempMaxCtrlCabinet",
+    "tag": "INTEGER",
+    "value": 30,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.3.0": {
+    "name": "tempMinAmbient",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.4.0": {
+    "name": "tempMaxAmbient",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.5.0": {
+    "name": "tempMinSignHousing",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.6.0": {
+    "name": "tempMaxSignHousing",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.7.0": {
+    "name": "tempSensorWarningMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.9.9.8.0": {
+    "name": "tempSensorCriticalTempMap",
+    "tag": "OCTET STRING",
+    "hex": "",
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.10.1.0": {
+    "name": "dmsGraphicMaxEntries",
+    "tag": "INTEGER",
+    "value": 20,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.10.2.0": {
+    "name": "dmsGraphicNumEntries",
+    "tag": "INTEGER",
+    "value": 0,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.10.3.0": {
+    "name": "dmsGraphicMaxSize",
+    "tag": "INTEGER",
+    "value": 2097152,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.10.4.0": {
+    "name": "availableGraphicMemory",
+    "tag": "Counter32",
+    "value": 1048576,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.3.10.5.0": {
+    "name": "dmsGraphicBlockSize",
+    "tag": "INTEGER",
+    "value": 512,
+    "access": "read-only"
+  },
+  "1.3.6.1.4.1.1206.4.2.6.1.3.1.5.1": {
+    "name": "globalMaxModules",
+    "tag": "OCTET STRING",
+    "hex": "312e30202f203230313520312053657074656d626572",
+    "access": "read-only"
+  }
+}
