@@ -238,6 +238,35 @@
       display: block;
       margin: 4px auto;
     }
+    /* Row layout: graphic left, text right */
+    .sign-row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: 100%;
+      min-height: 80px;
+    }
+    .sign-graphic-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 4px;
+    }
+    .sign-graphic-side {
+      image-rendering: pixelated;
+      max-height: 120px;
+      width: auto;
+      display: block;
+    }
+    .sign-text-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+    }
 
     .multi-meta {
       display: flex;
@@ -378,15 +407,25 @@ function _parseMULTI(str) {
     let fgColor = 'rgb(255,215,0)';
     const cf = raw.match(/\[cf(\d+),(\d+),(\d+)\]/i);
     if (cf) fgColor = `rgb(${cf[1]},${cf[2]},${cf[3]})`;
-    // Parse graphic tags: [img{n},...] or [g{n},...]
+    // Parse [g{n},{x},{y}] — graphic with explicit pixel position
     const graphics = [];
-    const imgRe = /\[(?:img|g)(\d+)[^\]]*\]/gi;
-    let imgMatch;
-    while ((imgMatch = imgRe.exec(raw)) !== null) {
-      graphics.push(parseInt(imgMatch[1]));
+    const gRe = /\[g(\d+),(\d+),(\d+)\]/gi;
+    let gm;
+    while ((gm = gRe.exec(raw)) !== null) {
+      graphics.push({ n: parseInt(gm[1]), x: parseInt(gm[2]), y: parseInt(gm[3]) });
     }
+    // Parse [img{n},...] — may have symbolic positions (l/t/r/b), treat as (0,0)
+    const imgRe = /\[img(\d+)[^\]]*\]/gi;
+    let im;
+    while ((im = imgRe.exec(raw)) !== null) {
+      graphics.push({ n: parseInt(im[1]), x: 0, y: 0 });
+    }
+    // Parse [tr{x1},{y1},{x2},{y2}] — text rectangle
+    let textRect = null;
+    const tr = raw.match(/\[tr(\d+),(\d+),(\d+),(\d+)\]/i);
+    if (tr) textRect = { x1: parseInt(tr[1]), y1: parseInt(tr[2]), x2: parseInt(tr[3]), y2: parseInt(tr[4]) };
     const text = raw.replace(/\[nl[^\]]*\]/gi, '\n').replace(/\[[^\]]*\]/g, '').trim();
-    return { lines: text ? text.split('\n') : [], bgColor, fgColor, onMs, offMs, graphics };
+    return { lines: text ? text.split('\n') : [], bgColor, fgColor, onMs, offMs, graphics, textRect };
   });
 }
 
@@ -399,23 +438,34 @@ function _faceState() {
   }
   const page = _cycle.pages[_cycle.idx];
   const shadow = 'rgba(' + page.fgColor.slice(4, -1) + ',0.5)';
-  let html = '';
-  if (page.graphics && page.graphics.length) {
-    html += page.graphics.map(n =>
-      `<img class="sign-graphic" src="/api/signs/${_cycle.signIdx}/graphics/${n}" alt="graphic ${n}" onerror="this.style.display='none'">`
-    ).join('');
-  }
-  html += page.lines.map(l =>
+  const textLines = page.lines.map(l =>
     `<div class="sign-line" style="color:${page.fgColor};text-shadow:0 0 6px ${shadow}">${escapeHtml(l) || ' '}</div>`
   ).join('');
-  return { bg: page.bgColor, html };
+  // Row layout when graphic pixel x is left of text rectangle x1
+  const rowLayout = page.textRect && page.graphics.length > 0 &&
+    page.graphics.some(g => g.x < page.textRect.x1);
+  let html;
+  if (rowLayout) {
+    const imgs = page.graphics.map(g =>
+      `<img class="sign-graphic-side" src="/api/signs/${_cycle.signIdx}/graphics/${g.n}" alt="graphic ${g.n}" onerror="this.style.display='none'">`
+    ).join('');
+    html = `<div class="sign-row"><div class="sign-graphic-col">${imgs}</div><div class="sign-text-col">${textLines}</div></div>`;
+  } else {
+    const imgs = page.graphics.map(g =>
+      `<img class="sign-graphic" src="/api/signs/${_cycle.signIdx}/graphics/${g.n}" alt="graphic ${g.n}" onerror="this.style.display='none'">`
+    ).join('');
+    html = imgs + textLines;
+  }
+  return { bg: page.bgColor, html, rowLayout };
 }
 
 function _applyFace() {
   const el = document.querySelector('.sign-face');
   if (!el) return;
-  const { bg, html } = _faceState();
+  const { bg, html, rowLayout } = _faceState();
   el.style.backgroundColor = bg;
+  el.style.alignItems = rowLayout ? 'stretch' : 'center';
+  el.style.padding = rowLayout ? '0' : '6px 12px';
   el.innerHTML = html;
 }
 
@@ -590,7 +640,8 @@ function cardControllerErrors(sign) {
 function cardMessage(sign) {
   const msg = sign.active_message;
   _startCycle(msg.has_message ? msg.multi : null, sign.index);
-  const { bg, html } = _faceState();
+  const { bg, html, rowLayout } = _faceState();
+  const faceExtra = rowLayout ? 'align-items:stretch;padding:0' : '';
   const multiRow = msg.has_message
     ? `<div class="multi-row"><label>MULTI</label><code>${escapeHtml(msg.multi)}</code></div>`
     : '';
@@ -601,7 +652,7 @@ function cardMessage(sign) {
   <div class="card">
     <div class="card-title">Active Message</div>
     <div class="sign-face-wrap">
-      <div class="sign-face" style="background-color:${bg}">${html}</div>
+      <div class="sign-face" style="background-color:${bg};${faceExtra}">${html}</div>
     </div>
     <div class="multi-meta">
       ${multiRow}
