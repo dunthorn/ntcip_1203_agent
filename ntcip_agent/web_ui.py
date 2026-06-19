@@ -215,16 +215,36 @@ def create_web_app(config: AgentConfig, agents: List[DmsAgent]) -> Flask:
         if not (0 <= idx < len(agents)):
             return jsonify({"error": "not found"}), 404
         state = agents[idx].state
+
+        # Primary lookup: find by dmsGraphicNumber field
         graphic = next(
             (g for g in state.graphics.values()
              if g.number == graphic_number and g.width > 0 and g.height > 0),
             None,
         )
+        # Fallback: use graphic_number as the table index (many ATMS use index == number)
         if graphic is None:
-            return ("", 404)
+            g = state.graphics.get(graphic_number)
+            if g and g.width > 0 and g.height > 0:
+                graphic = g
+
+        if graphic is None:
+            available = [
+                {"table_idx": k, "number": g.number, "w": g.width, "h": g.height, "status": g.status}
+                for k, g in state.graphics.items()
+                if g.number != 0 or g.width > 0
+            ]
+            print(f"[graphic] 404: requested number={graphic_number}, available={available}")
+            return jsonify({
+                "error": "graphic not available",
+                "requested_number": graphic_number,
+                "available": available,
+            }), 404
+
         try:
             return Response(_make_png(graphic), mimetype="image/png")
         except Exception as exc:
+            print(f"[graphic] PNG encode error for number={graphic_number}: {exc}")
             return jsonify({"error": str(exc)}), 500
 
     return app
