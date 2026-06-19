@@ -20,7 +20,7 @@ from typing import Dict, Tuple
 
 from .ber import Value
 from .config import SignConfig
-from .crc import compute_message_crc
+from .crc import _crc16_x25, compute_message_crc
 from .errors import SetError
 from .snmp_message import ERR_GEN_ERR, ERR_NO_SUCH_NAME
 
@@ -485,6 +485,42 @@ class SignState:
             raise SetError(ERR_GEN_ERR)
 
     def _compute_graphic_id(self, index: int) -> int:
+        """Compute dmsGraphicID per NTCIP 1203: CRC-16/X-25 (byte-swapped) over
+        the OER-encoded GraphicInfoList (number + height + width + type +
+        transparentEnabled + transparentColor + bitmap)."""
         row = self.graphics[index]
-        h = row.number * 31 + row.height * 97 + row.width * 7 + row.graphic_type
-        return (h & 0xFFFF) or 1
+
+        # Bitmap size in bytes
+        pixels = row.height * row.width
+        if row.graphic_type == 1:       # monochrome1bit
+            bitmap_size = (pixels + 7) // 8
+        elif row.graphic_type in (2, 3):  # monochrome8bit / colorClassic
+            bitmap_size = pixels
+        else:                           # color24bit (4)
+            bitmap_size = pixels * 3
+
+        # Concatenate stored blocks in order, zero-fill missing ones
+        block_size = int(self.scalars.get(
+            "1.3.6.1.4.1.1206.4.2.3.10.5.0", Value.integer(512)
+        ).value)
+        num_blocks = max(1, (bitmap_size + block_size - 1) // block_size)
+        bitmap = bytearray()
+        for b in range(1, num_blocks + 1):
+            bitmap.extend(row.bitmap_blocks.get(b, b"\x00" * block_size))
+        bitmap = bytes(bitmap[:bitmap_size])
+
+        # transparentColor is always 3 bytes; pad/trim if needed
+        tc = row.transparent_color
+        if len(tc) < 3:
+            tc = tc + b"\x00" * (3 - len(tc))
+
+        data = (
+            bytes([row.number])
+            + row.height.to_bytes(2, "big")
+            + row.width.to_bytes(2, "big")
+            + bytes([row.graphic_type, row.transparent_enabled])
+            + tc[:3]
+            + bitmap
+        )
+        crc = _crc16_x25(data)
+        return ((crc & 0xFF) << 8) | (crc >> 8)

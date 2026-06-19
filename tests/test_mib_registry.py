@@ -4,6 +4,7 @@ import unittest
 
 from ntcip_agent.config import AgentConfig
 from ntcip_agent.mib_tree import (
+    BITMAP_TABLE,
     CHARACTER_TABLE,
     FONT_TABLE,
     GRAPHIC_TABLE,
@@ -159,19 +160,36 @@ class TestGraphicTable(unittest.TestCase):
         status_obj.setter(Value.integer(GRAPHIC_NOT_USED_REQ))
         self.assertEqual(state.graphics[1].status, GRAPHIC_NOT_USED)
 
-        # modifyReq(7) → modifying(2)
+        # modifyReq(7) → modifying(2), clears bitmap blocks
         status_obj.setter(Value.integer(GRAPHIC_MODIFY_REQ))
         self.assertEqual(state.graphics[1].status, GRAPHIC_MODIFYING)
+        self.assertEqual(state.graphics[1].bitmap_blocks, {})
 
-        # set some attributes
-        reg.get(GRAPHIC_TABLE + (4, 1)).setter(Value.integer(27))   # height
-        reg.get(GRAPHIC_TABLE + (5, 1)).setter(Value.integer(145))  # width
-        reg.get(GRAPHIC_TABLE + (2, 1)).setter(Value.integer(1))    # number
+        # set graphic attributes (MIB example 1: number=3, height=6, width=10,
+        # type=1/monochrome1bit, transparentEnabled=0, transparentColor=01 00 00)
+        reg.get(GRAPHIC_TABLE + (2, 1)).setter(Value.integer(3))     # number
+        reg.get(GRAPHIC_TABLE + (4, 1)).setter(Value.integer(6))     # height
+        reg.get(GRAPHIC_TABLE + (5, 1)).setter(Value.integer(10))    # width
+        reg.get(GRAPHIC_TABLE + (6, 1)).setter(Value.integer(1))     # type
+        reg.get(GRAPHIC_TABLE + (8, 1)).setter(Value.integer(0))     # transparentEnabled
+        reg.get(GRAPHIC_TABLE + (9, 1)).setter(Value.octet_string(b"\x01\x00\x00"))
 
-        # readyForUseReq(8) → readyForUse(4) with computed graphic ID
+        # upload bitmap block 1 (8 bytes for 10×6 mono1bit)
+        bitmap_obj = reg.get(BITMAP_TABLE + (3, 1, 1))
+        self.assertIsNotNone(bitmap_obj)
+        self.assertTrue(bitmap_obj.writable)
+        bitmap_obj.setter(Value.octet_string(bytes.fromhex("849263 08C248A170".replace(" ", ""))))
+
+        # readyForUseReq(8) → readyForUse(4) with CRC matching MIB example 1
         status_obj.setter(Value.integer(GRAPHIC_READY_FOR_USE_REQ))
         self.assertEqual(state.graphics[1].status, GRAPHIC_READY_FOR_USE)
-        self.assertGreater(state.graphics[1].graphic_id, 0)
+        self.assertEqual(state.graphics[1].graphic_id, 0xB95A)
+
+    def test_bitmap_unwritten_block_returns_empty(self):
+        reg, state = new_registry()
+        obj = reg.get(BITMAP_TABLE + (3, 1, 100))
+        self.assertIsNotNone(obj)
+        self.assertEqual(obj.getter().value, b"")
 
 
 class TestGetNextWalk(unittest.TestCase):
