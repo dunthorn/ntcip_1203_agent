@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import os
+import struct
+import zlib
 from typing import List
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, Response, jsonify, render_template, request
 
 from .ber import Value
 from .config import AgentConfig
@@ -87,6 +89,67 @@ def _sign_snapshot(idx: int, agent: DmsAgent, config: AgentConfig) -> dict:
     }
 
 
+def _make_png(graphic) -> bytes:
+    """Render a GraphicRecord's bitmap as a minimal PNG image."""
+    w, h, g_type = graphic.width, graphic.height, graphic.graphic_type
+
+    pixels = w * h
+    if g_type == 1:
+        bitmap_size = (pixels + 7) // 8
+    elif g_type in (2, 3):
+        bitmap_size = pixels
+    else:
+        bitmap_size = pixels * 3
+
+    block_size = 512
+    num_blocks = max(1, (bitmap_size + block_size - 1) // block_size)
+    raw_blocks = bytearray()
+    for b in range(1, num_blocks + 1):
+        raw_blocks.extend(graphic.bitmap_blocks.get(b, b"\x00" * block_size))
+    bitmap = bytes(raw_blocks[:bitmap_size])
+
+    def chunk(tag: bytes, data: bytes) -> bytes:
+        c = tag + data
+        return struct.pack(">I", len(data)) + c + struct.pack(">I", zlib.crc32(c) & 0xFFFFFFFF)
+
+    if g_type == 1:  # monochrome1bit → grayscale
+        bpr = (w + 7) // 8
+        rows = []
+        for y in range(h):
+            row = bytearray(w)
+            for x in range(w):
+                bi = y * bpr + x // 8
+                bit = (bitmap[bi] >> (7 - x % 8)) & 1 if bi < len(bitmap) else 0
+                row[x] = 255 if bit else 0
+            rows.append(bytes(row))
+        ihdr = chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 0, 0, 0, 0))
+    elif g_type == 2:  # monochrome8bit → grayscale
+        rows = [bitmap[y * w:(y + 1) * w] for y in range(h)]
+        ihdr = chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 0, 0, 0, 0))
+    elif g_type == 3:  # colorClassic → RGB
+        _CLASSIC = [
+            (0, 0, 0), (255, 0, 0), (255, 255, 0), (0, 255, 0),
+            (0, 255, 255), (0, 0, 255), (255, 0, 255), (255, 255, 255),
+        ]
+        rows = []
+        for y in range(h):
+            row = bytearray()
+            for x in range(w):
+                ci = bitmap[y * w + x] if (y * w + x) < len(bitmap) else 0
+                row.extend(_CLASSIC[ci % 8])
+            rows.append(bytes(row))
+        ihdr = chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
+    else:  # color24bit → RGB
+        stride = w * 3
+        rows = [bitmap[y * stride:(y + 1) * stride] for y in range(h)]
+        ihdr = chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
+
+    raw = b"".join(b"\x00" + row for row in rows)
+    idat = chunk(b"IDAT", zlib.compress(raw))
+    iend = chunk(b"IEND", b"")
+    return b"\x89PNG\r\n\x1a\n" + ihdr + idat + iend
+
+
 def create_web_app(config: AgentConfig, agents: List[DmsAgent]) -> Flask:
     template_dir = os.path.join(os.path.dirname(__file__), "templates")
     app = Flask(__name__, template_folder=template_dir)
@@ -146,5 +209,22 @@ def create_web_app(config: AgentConfig, agents: List[DmsAgent]) -> Flask:
             "controller_error_bits": CONTROLLER_ERROR_BITS,
             "control_mode_names": CONTROL_MODE_NAMES,
         })
+
+    @app.route("/api/signs/<int:idx>/graphics/<int:graphic_number>")
+    def get_graphic(idx: int, graphic_number: int):
+        if not (0 <= idx < len(agents)):
+            return jsonify({"error": "not found"}), 404
+        state = agents[idx].state
+        graphic = next(
+            (g for g in state.graphics.values()
+             if g.number == graphic_number and g.width > 0 and g.height > 0),
+            None,
+        )
+        if graphic is None:
+            return ("", 404)
+        try:
+            return Response(_make_png(graphic), mimetype="image/png")
+        except Exception as exc:
+            return jsonify({"error": str(exc)}), 500
 
     return app

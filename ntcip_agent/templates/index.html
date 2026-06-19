@@ -231,6 +231,13 @@
       font-size: 12px;
       font-style: italic;
     }
+    .sign-graphic {
+      image-rendering: pixelated;
+      max-height: 80px;
+      max-width: 100%;
+      display: block;
+      margin: 4px auto;
+    }
 
     .multi-meta {
       display: flex;
@@ -343,10 +350,11 @@ async function postJSON(url, body) {
    5 s on / 2 s off per page.
    ================================================================ */
 const _cycle = {
-  multi: null,   // MULTI string this cycle was started for
-  pages: [],     // parsed page objects
-  idx: 0,        // index of the page currently being shown
-  phase: 'show', // 'show' | 'blank'
+  multi: null,    // MULTI string this cycle was started for
+  signIdx: null,  // sign array index (for graphic URLs)
+  pages: [],      // parsed page objects
+  idx: 0,         // index of the page currently being shown
+  phase: 'show',  // 'show' | 'blank'
   timer: null,
 };
 
@@ -370,8 +378,15 @@ function _parseMULTI(str) {
     let fgColor = 'rgb(255,215,0)';
     const cf = raw.match(/\[cf(\d+),(\d+),(\d+)\]/i);
     if (cf) fgColor = `rgb(${cf[1]},${cf[2]},${cf[3]})`;
+    // Parse graphic tags: [img{n},...] or [g{n},...]
+    const graphics = [];
+    const imgRe = /\[(?:img|g)(\d+)[^\]]*\]/gi;
+    let imgMatch;
+    while ((imgMatch = imgRe.exec(raw)) !== null) {
+      graphics.push(parseInt(imgMatch[1]));
+    }
     const text = raw.replace(/\[nl[^\]]*\]/gi, '\n').replace(/\[[^\]]*\]/g, '').trim();
-    return { lines: text ? text.split('\n') : [], bgColor, fgColor, onMs, offMs };
+    return { lines: text ? text.split('\n') : [], bgColor, fgColor, onMs, offMs, graphics };
   });
 }
 
@@ -384,7 +399,13 @@ function _faceState() {
   }
   const page = _cycle.pages[_cycle.idx];
   const shadow = 'rgba(' + page.fgColor.slice(4, -1) + ',0.5)';
-  const html = page.lines.map(l =>
+  let html = '';
+  if (page.graphics && page.graphics.length) {
+    html += page.graphics.map(n =>
+      `<img class="sign-graphic" src="/api/signs/${_cycle.signIdx}/graphics/${n}" alt="graphic ${n}" onerror="this.style.display='none'">`
+    ).join('');
+  }
+  html += page.lines.map(l =>
     `<div class="sign-line" style="color:${page.fgColor};text-shadow:0 0 6px ${shadow}">${escapeHtml(l) || ' '}</div>`
   ).join('');
   return { bg: page.bgColor, html };
@@ -425,10 +446,11 @@ function _scheduleCycle() {
   }
 }
 
-function _startCycle(multiStr) {
-  if (multiStr === _cycle.multi) return;  // unchanged — keep existing cycle running
+function _startCycle(multiStr, signIdx) {
+  if (multiStr === _cycle.multi && signIdx === _cycle.signIdx) return;
   if (_cycle.timer) { clearTimeout(_cycle.timer); _cycle.timer = null; }
   _cycle.multi = multiStr;
+  _cycle.signIdx = signIdx;
   _cycle.pages = multiStr ? _parseMULTI(multiStr) : [];
   _cycle.idx = 0;
   _cycle.phase = 'show';
@@ -567,7 +589,7 @@ function cardControllerErrors(sign) {
 
 function cardMessage(sign) {
   const msg = sign.active_message;
-  _startCycle(msg.has_message ? msg.multi : null);
+  _startCycle(msg.has_message ? msg.multi : null, sign.index);
   const { bg, html } = _faceState();
   const multiRow = msg.has_message
     ? `<div class="multi-row"><label>MULTI</label><code>${escapeHtml(msg.multi)}</code></div>`
