@@ -241,10 +241,40 @@ def create_web_app(config: AgentConfig, agents: List[DmsAgent]) -> Flask:
                 "available": available,
             }), 404
 
+        print(f"[graphic] serving number={graphic_number}: type={graphic.graphic_type} w={graphic.width} h={graphic.height}")
         try:
             return Response(_make_png(graphic), mimetype="image/png")
         except Exception as exc:
             print(f"[graphic] PNG encode error for number={graphic_number}: {exc}")
             return jsonify({"error": str(exc)}), 500
+
+    @app.route("/api/signs/<int:idx>/graphics/<int:graphic_number>/info")
+    def get_graphic_info(idx: int, graphic_number: int):
+        """Debug endpoint: returns stored metadata and first bytes of block 1."""
+        if not (0 <= idx < len(agents)):
+            return jsonify({"error": "not found"}), 404
+        state = agents[idx].state
+        graphic = next(
+            (g for g in state.graphics.values()
+             if g.number == graphic_number and g.width > 0 and g.height > 0),
+            None,
+        )
+        if graphic is None:
+            g = state.graphics.get(graphic_number)
+            if g and g.width > 0 and g.height > 0:
+                graphic = g
+        if graphic is None:
+            return jsonify({"error": "not found"}), 404
+        block1 = graphic.bitmap_blocks.get(1, b"")
+        return jsonify({
+            "table_idx": graphic.index,
+            "number": graphic.number,
+            "width": graphic.width,
+            "height": graphic.height,
+            "graphic_type": graphic.graphic_type,
+            "status": graphic.status,
+            "blocks_stored": sorted(graphic.bitmap_blocks.keys()),
+            "block_1_first_32_hex": block1[:32].hex() if block1 else "",
+        })
 
     return app

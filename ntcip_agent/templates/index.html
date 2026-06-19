@@ -441,15 +441,20 @@ function _faceState() {
   const textLines = page.lines.map(l =>
     `<div class="sign-line" style="color:${page.fgColor};text-shadow:0 0 6px ${shadow}">${escapeHtml(l) || ' '}</div>`
   ).join('');
-  // Row layout when graphic pixel x is left of text rectangle x1
-  const rowLayout = page.textRect && page.graphics.length > 0 &&
-    page.graphics.some(g => g.x < page.textRect.x1);
+  // Determine row layout and which side the graphic is on
+  const graphicOnLeft = page.textRect != null && page.graphics.some(g => g.x < page.textRect.x1);
+  const graphicOnRight = !graphicOnLeft && page.textRect != null && page.graphics.some(g => g.x >= page.textRect.x1);
+  const rowLayout = graphicOnLeft || graphicOnRight;
   let html;
   if (rowLayout) {
     const imgs = page.graphics.map(g =>
       `<img class="sign-graphic-side" src="/api/signs/${_cycle.signIdx}/graphics/${g.n}" alt="graphic ${g.n}" onerror="this.style.display='none'">`
     ).join('');
-    html = `<div class="sign-row"><div class="sign-graphic-col">${imgs}</div><div class="sign-text-col">${textLines}</div></div>`;
+    if (graphicOnLeft) {
+      html = `<div class="sign-row"><div class="sign-graphic-col">${imgs}</div><div class="sign-text-col">${textLines}</div></div>`;
+    } else {
+      html = `<div class="sign-row"><div class="sign-text-col">${textLines}</div><div class="sign-graphic-col">${imgs}</div></div>`;
+    }
   } else {
     const imgs = page.graphics.map(g =>
       `<img class="sign-graphic" src="/api/signs/${_cycle.signIdx}/graphics/${g.n}" alt="graphic ${g.n}" onerror="this.style.display='none'">`
