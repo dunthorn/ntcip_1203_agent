@@ -225,7 +225,6 @@
       line-height: 1.3;
       text-align: center;
       white-space: pre;
-      text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
     }
     .sign-no-msg {
       color: #2a3040;
@@ -302,7 +301,7 @@
 
 <div class="refresh-bar">
   <span class="refresh-dot" id="refreshDot"></span>
-  <span id="refreshLabel">Connecting…</span>
+  <span id="refreshLabel">Connecting&hellip;</span>
 </div>
 
 <script>
@@ -312,7 +311,6 @@
 let signs = [];
 let meta = { short_error_bits: {}, controller_error_bits: {}, control_mode_names: {} };
 let selectedIdx = null;
-let pendingUpdate = false;
 
 /* ================================================================
    Fetch helpers
@@ -332,24 +330,109 @@ async function postJSON(url, body) {
 }
 
 /* ================================================================
-   MULTI string renderer
+   MULTI page cycling engine
+
+   Pages are separated by [np]. Each page may carry:
+     [pt{n}o{m}]   page on-time n and off-time (blank) m, tenths of a second
+     [pb r,g,b]    page background colour  (bare [pb] = default black)
+     [cf r,g,b]    foreground colour       (bare [cf] = default amber)
+     [nl]          new line within a page
+
+   For single-page messages with no [pt] tag, onMs is null (display
+   indefinitely, no cycling timer). For multi-page messages the default is
+   5 s on / 2 s off per page.
    ================================================================ */
-function renderMulti(multiStr) {
-  if (!multiStr) return '<div class="sign-no-msg">No active message</div>';
+const _cycle = {
+  multi: null,   // MULTI string this cycle was started for
+  pages: [],     // parsed page objects
+  idx: 0,        // index of the page currently being shown
+  phase: 'show', // 'show' | 'blank'
+  timer: null,
+};
 
-  // Convert known structural tags to placeholders, strip everything else
-  let text = multiStr
-    .replace(/\[nl[^\]]*\]/gi, '\n')
-    .replace(/\[np[^\]]*\]/gi, '\f')
-    .replace(/\[[^\]]*\]/g, '');
+const _DEF_ON_MS  = 5000;
+const _DEF_OFF_MS = 2000;
 
-  // Show first page only
-  const page = text.split('\f')[0];
-  const lines = page.split('\n');
+function _parseMULTI(str) {
+  const rawPages = str.split(/\[np[^\]]*\]/i);
+  const isMulti = rawPages.length > 1;
+  return rawPages.map(raw => {
+    let onMs  = isMulti ? _DEF_ON_MS  : null;
+    let offMs = isMulti ? _DEF_OFF_MS : 0;
+    const pt = raw.match(/\[pt(\d+)(?:o(\d+))?\]/i);
+    if (pt) {
+      onMs  = parseInt(pt[1]) * 100;
+      offMs = pt[2] !== undefined ? parseInt(pt[2]) * 100 : _DEF_OFF_MS;
+    }
+    let bgColor = 'rgb(0,0,0)';
+    const pb = raw.match(/\[pb(\d+),(\d+),(\d+)\]/i);
+    if (pb) bgColor = `rgb(${pb[1]},${pb[2]},${pb[3]})`;
+    let fgColor = 'rgb(255,215,0)';
+    const cf = raw.match(/\[cf(\d+),(\d+),(\d+)\]/i);
+    if (cf) fgColor = `rgb(${cf[1]},${cf[2]},${cf[3]})`;
+    const text = raw.replace(/\[nl[^\]]*\]/gi, '\n').replace(/\[[^\]]*\]/g, '').trim();
+    return { lines: text ? text.split('\n') : [], bgColor, fgColor, onMs, offMs };
+  });
+}
 
-  return lines.map(l =>
-    `<div class="sign-line">${escapeHtml(l) || ' '}</div>`
+function _faceState() {
+  if (!_cycle.pages.length) {
+    return { bg: 'rgb(0,0,0)', html: '<div class="sign-no-msg">No active message</div>' };
+  }
+  if (_cycle.phase === 'blank') {
+    return { bg: 'rgb(0,0,0)', html: '' };
+  }
+  const page = _cycle.pages[_cycle.idx];
+  const shadow = 'rgba(' + page.fgColor.slice(4, -1) + ',0.5)';
+  const html = page.lines.map(l =>
+    `<div class="sign-line" style="color:${page.fgColor};text-shadow:0 0 6px ${shadow}">${escapeHtml(l) || ' '}</div>`
   ).join('');
+  return { bg: page.bgColor, html };
+}
+
+function _applyFace() {
+  const el = document.querySelector('.sign-face');
+  if (!el) return;
+  const { bg, html } = _faceState();
+  el.style.backgroundColor = bg;
+  el.innerHTML = html;
+}
+
+function _scheduleCycle() {
+  if (!_cycle.pages.length) return;
+  const page = _cycle.pages[_cycle.idx];
+  if (_cycle.phase === 'show') {
+    if (page.onMs === null) return;  // indefinite — no timer
+    _cycle.timer = setTimeout(() => {
+      _cycle.phase = 'blank';
+      _applyFace();
+      _scheduleCycle();
+    }, page.onMs);
+  } else {
+    if (page.offMs === 0) {
+      _cycle.idx = (_cycle.idx + 1) % _cycle.pages.length;
+      _cycle.phase = 'show';
+      _applyFace();
+      _scheduleCycle();
+    } else {
+      _cycle.timer = setTimeout(() => {
+        _cycle.idx = (_cycle.idx + 1) % _cycle.pages.length;
+        _cycle.phase = 'show';
+        _applyFace();
+        _scheduleCycle();
+      }, page.offMs);
+    }
+  }
+}
+
+function _startCycle(multiStr) {
+  if (multiStr === _cycle.multi) return;  // unchanged — keep existing cycle running
+  if (_cycle.timer) { clearTimeout(_cycle.timer); _cycle.timer = null; }
+  _cycle.multi = multiStr;
+  _cycle.pages = multiStr ? _parseMULTI(multiStr) : [];
+  _cycle.idx = 0;
+  _cycle.phase = 'show';
+  _scheduleCycle();
 }
 
 function escapeHtml(s) {
@@ -427,7 +510,7 @@ function cardInfo(sign) {
       <div class="info-item"><label>Name</label><span>${escapeHtml(sign.name)}</span></div>
       <div class="info-item"><label>SNMP Port</label><span>${sign.port}</span></div>
       <div class="info-item"><label>Sign Type</label><span>${escapeHtml(sign.sign_type)}</span></div>
-      <div class="info-item"><label>Dimensions</label><span>${sign.width_pixels} × ${sign.height_pixels} px</span></div>
+      <div class="info-item"><label>Dimensions</label><span>${sign.width_pixels} &times; ${sign.height_pixels} px</span></div>
       <div class="info-item"><label>Color Scheme</label><span>${escapeHtml(sign.color_scheme)}</span></div>
     </div>
   </div>`;
@@ -484,7 +567,8 @@ function cardControllerErrors(sign) {
 
 function cardMessage(sign) {
   const msg = sign.active_message;
-  const faceContent = renderMulti(msg.multi);
+  _startCycle(msg.has_message ? msg.multi : null);
+  const { bg, html } = _faceState();
   const multiRow = msg.has_message
     ? `<div class="multi-row"><label>MULTI</label><code>${escapeHtml(msg.multi)}</code></div>`
     : '';
@@ -495,7 +579,7 @@ function cardMessage(sign) {
   <div class="card">
     <div class="card-title">Active Message</div>
     <div class="sign-face-wrap">
-      <div class="sign-face">${faceContent}</div>
+      <div class="sign-face" style="background-color:${bg}">${html}</div>
     </div>
     <div class="multi-meta">
       ${multiRow}

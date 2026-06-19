@@ -77,8 +77,16 @@ SOURCE_MODE_CENTRAL = 8
 # fontStatus
 FONT_NOT_USED = 1
 
-# dmsGraphicStatus
+# dmsGraphicStatus (NTCIP 1203 v03.05 dmsGraphicStatus values)
 GRAPHIC_NOT_USED = 1
+GRAPHIC_MODIFYING = 2
+GRAPHIC_CALCULATING_ID = 3
+GRAPHIC_READY_FOR_USE = 4
+GRAPHIC_IN_USE = 5
+GRAPHIC_PERMANENT = 6
+GRAPHIC_MODIFY_REQ = 7
+GRAPHIC_READY_FOR_USE_REQ = 8
+GRAPHIC_NOT_USED_REQ = 9
 
 
 @dataclass
@@ -437,3 +445,43 @@ class SignState:
         self.msg_requester_id = source_address
         if error == ACT_ERR_NONE:
             self.msg_source_mode = SOURCE_MODE_CENTRAL
+
+    # ------------------------------------------------------------------
+    # dmsGraphicStatus state machine
+    # ------------------------------------------------------------------
+
+    def set_graphic_status(self, index: int, new_status: int) -> None:
+        row = self.graphics.get(index)
+        if row is None:
+            raise SetError(ERR_NO_SUCH_NAME)
+
+        if new_status == GRAPHIC_NOT_USED_REQ:
+            row.number = 0
+            row.name = b""
+            row.height = 0
+            row.width = 0
+            row.graphic_type = 1
+            row.graphic_id = 0
+            row.transparent_enabled = 0
+            row.transparent_color = b"\x00"
+            row.status = GRAPHIC_NOT_USED
+        elif new_status == GRAPHIC_MODIFY_REQ:
+            row.number = 0
+            row.name = b""
+            row.height = 0
+            row.width = 0
+            row.graphic_type = 1
+            row.graphic_id = 0
+            row.transparent_enabled = 0
+            row.transparent_color = b"\x00"
+            row.status = GRAPHIC_MODIFYING
+        elif new_status == GRAPHIC_READY_FOR_USE_REQ:
+            row.graphic_id = self._compute_graphic_id(index)
+            row.status = GRAPHIC_READY_FOR_USE
+        else:
+            raise SetError(ERR_GEN_ERR)
+
+    def _compute_graphic_id(self, index: int) -> int:
+        row = self.graphics[index]
+        h = row.number * 31 + row.height * 97 + row.width * 7 + row.graphic_type
+        return (h & 0xFFFF) or 1

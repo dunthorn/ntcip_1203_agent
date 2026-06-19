@@ -353,6 +353,12 @@ def _register_graphic_table(reg: MibRegistry, state: SignState) -> None:
 
         return setter
 
+    def graphic_status_setter(index):
+        def setter(value: Value) -> None:
+            state.set_graphic_status(index, int(value.value))
+
+        return setter
+
     columns = [
         (1, "index", Value.integer, None, "read-only"),
         (2, "number", Value.integer, int, "read-write"),
@@ -383,9 +389,10 @@ def _register_graphic_table(reg: MibRegistry, state: SignState) -> None:
         for col, attr, wrap, unwrap, access in columns:
             oid = GRAPHIC_TABLE + (col, index)
             getter = make_getter(index, attr, wrap)
-            setter = (
-                make_setter(index, attr, unwrap) if access == "read-write" else None
-            )
+            if access == "read-write":
+                setter = graphic_status_setter(index) if col == 10 else make_setter(index, attr, unwrap)
+            else:
+                setter = None
             reg.register(MibObject(oid, names[col], access, getter, setter))
 
 

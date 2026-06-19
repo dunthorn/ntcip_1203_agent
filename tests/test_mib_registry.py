@@ -140,6 +140,39 @@ class TestGraphicTable(unittest.TestCase):
             self.assertIsNotNone(obj)
             self.assertEqual(obj.getter().value, index)
 
+    def test_graphic_status_state_machine(self):
+        from ntcip_agent.ber import Value
+        from ntcip_agent.sign_state import (
+            GRAPHIC_MODIFYING,
+            GRAPHIC_NOT_USED,
+            GRAPHIC_NOT_USED_REQ,
+            GRAPHIC_READY_FOR_USE,
+            GRAPHIC_READY_FOR_USE_REQ,
+            GRAPHIC_MODIFY_REQ,
+        )
+
+        reg, state = new_registry()
+        status_obj = reg.get(GRAPHIC_TABLE + (10, 1))
+        self.assertTrue(status_obj.writable)
+
+        # notUsedReq(9) → notUsed(1)
+        status_obj.setter(Value.integer(GRAPHIC_NOT_USED_REQ))
+        self.assertEqual(state.graphics[1].status, GRAPHIC_NOT_USED)
+
+        # modifyReq(7) → modifying(2)
+        status_obj.setter(Value.integer(GRAPHIC_MODIFY_REQ))
+        self.assertEqual(state.graphics[1].status, GRAPHIC_MODIFYING)
+
+        # set some attributes
+        reg.get(GRAPHIC_TABLE + (4, 1)).setter(Value.integer(27))   # height
+        reg.get(GRAPHIC_TABLE + (5, 1)).setter(Value.integer(145))  # width
+        reg.get(GRAPHIC_TABLE + (2, 1)).setter(Value.integer(1))    # number
+
+        # readyForUseReq(8) → readyForUse(4) with computed graphic ID
+        status_obj.setter(Value.integer(GRAPHIC_READY_FOR_USE_REQ))
+        self.assertEqual(state.graphics[1].status, GRAPHIC_READY_FOR_USE)
+        self.assertGreater(state.graphics[1].graphic_id, 0)
+
 
 class TestGetNextWalk(unittest.TestCase):
     def test_walk_from_root_reaches_sys_descr(self):
