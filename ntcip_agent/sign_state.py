@@ -140,6 +140,7 @@ class GraphicRecord:
     transparent_enabled: int = 0
     transparent_color: bytes = b"\x00"
     status: int = GRAPHIC_NOT_USED
+    bitmap_blocks: Dict[int, bytes] = field(default_factory=dict)
 
 
 def _load_json(filename: str) -> dict:
@@ -464,6 +465,7 @@ class SignState:
             row.graphic_id = 0
             row.transparent_enabled = 0
             row.transparent_color = b"\x00"
+            row.bitmap_blocks = {}
             row.status = GRAPHIC_NOT_USED
         elif new_status == GRAPHIC_MODIFY_REQ:
             row.number = 0
@@ -474,6 +476,7 @@ class SignState:
             row.graphic_id = 0
             row.transparent_enabled = 0
             row.transparent_color = b"\x00"
+            row.bitmap_blocks = {}
             row.status = GRAPHIC_MODIFYING
         elif new_status == GRAPHIC_READY_FOR_USE_REQ:
             row.graphic_id = self._compute_graphic_id(index)

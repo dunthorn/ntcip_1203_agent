@@ -28,6 +28,10 @@ MESSAGE_TABLE = DMS + (5, 8, 1)
 FONT_TABLE = DMS + (3, 2, 1)
 CHARACTER_TABLE = DMS + (3, 4, 1)
 GRAPHIC_TABLE = DMS + (10, 6, 1)
+BITMAP_TABLE = DMS + (10, 7, 1)
+
+# dmsGraphicMaxSize / dmsGraphicBlockSize = 131072 / 512 = 256
+_MAX_BITMAP_BLOCKS = 256
 
 
 def _load_json(filename: str) -> dict:
@@ -396,6 +400,30 @@ def _register_graphic_table(reg: MibRegistry, state: SignState) -> None:
             reg.register(MibObject(oid, names[col], access, getter, setter))
 
 
+def _register_graphic_bitmap_table(reg: MibRegistry, state: SignState) -> None:
+    """Register dmsGraphicBitmapTable (OID .10.7.1).
+
+    Indexed by (dmsGraphicBitmapIndex, dmsGraphicBlockNumber). Only column 3
+    (dmsGraphicBitmap) is registered since that is the only column the ATMS
+    reads or writes. Per NTCIP 1203 the simulator must not return noSuchName
+    for any block number in the range 1..dmsGraphicMaxSize/dmsGraphicBlockSize.
+    Unwritten blocks return an empty octet string.
+    """
+    for graphic_idx in state.graphics:
+        for block_num in range(1, _MAX_BITMAP_BLOCKS + 1):
+            oid = BITMAP_TABLE + (3, graphic_idx, block_num)
+            g = graphic_idx
+            b = block_num
+
+            def getter(gi=g, bn=b):
+                return Value.octet_string(state.graphics[gi].bitmap_blocks.get(bn, b""))
+
+            def setter(value: Value, gi=g, bn=b):
+                state.graphics[gi].bitmap_blocks[bn] = bytes(value.value)
+
+            reg.register(MibObject(oid, "dmsGraphicBitmap", "read-write", getter, setter))
+
+
 def build_registry(state: SignState) -> MibRegistry:
     """Build the full SNMP object registry for ``state``."""
     reg = MibRegistry()
@@ -405,5 +433,6 @@ def build_registry(state: SignState) -> MibRegistry:
     _register_font_table(reg, state)
     _register_character_table(reg, state)
     _register_graphic_table(reg, state)
+    _register_graphic_bitmap_table(reg, state)
     reg.finalize()
     return reg
