@@ -14,9 +14,9 @@ from ntcip_agent.sign_state import MEM_CHANGEABLE, MEM_CURRENT_BUFFER, SignState
 
 
 def new_registry():
-    state = SignState(AgentConfig.default())
-    config = AgentConfig.default()
-    return build_registry(state, config), state
+    cfg = AgentConfig.default()
+    state = SignState(cfg.signs[0])
+    return build_registry(state), state
 
 
 class TestSystemGroup(unittest.TestCase):
@@ -135,7 +135,7 @@ class TestFontAndCharacterTables(unittest.TestCase):
 class TestGraphicTable(unittest.TestCase):
     def test_all_slots_registered_and_unused(self):
         reg, state = new_registry()
-        for index in range(1, state.config.sign.max_graphics + 1):
+        for index in range(1, state.sign_config.max_graphics + 1):
             obj = reg.get(GRAPHIC_TABLE + (1, index))
             self.assertIsNotNone(obj)
             self.assertEqual(obj.getter().value, index)

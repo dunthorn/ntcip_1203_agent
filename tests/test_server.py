@@ -31,7 +31,8 @@ ACTIVATE_MSG_ERROR = DMS + (6, 17, 0)
 
 
 def new_agent() -> DmsAgent:
-    return DmsAgent(AgentConfig.default())
+    cfg = AgentConfig.default()
+    return DmsAgent(cfg.network, cfg.signs[0])
 
 
 def request(pdu_type, request_id, bindings, community=b"public") -> bytes:

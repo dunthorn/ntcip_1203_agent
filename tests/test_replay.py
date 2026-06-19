@@ -59,7 +59,8 @@ class TestReplayHexDumps(unittest.TestCase):
         responses = _split_messages(resp_bytes)
         self.assertEqual(len(requests), len(responses))
 
-        agent = DmsAgent(AgentConfig.default())
+        cfg = AgentConfig.default()
+        agent = DmsAgent(cfg.network, cfg.signs[0])
 
         for i, (req, expected) in enumerate(zip(requests, responses)):
             actual = agent.handle_message(req)

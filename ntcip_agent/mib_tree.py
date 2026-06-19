@@ -17,7 +17,6 @@ from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
 
 from .ber import Value
-from .config import AgentConfig
 from .sign_state import SignState
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -390,7 +389,7 @@ def _register_graphic_table(reg: MibRegistry, state: SignState) -> None:
             reg.register(MibObject(oid, names[col], access, getter, setter))
 
 
-def build_registry(state: SignState, config: AgentConfig) -> MibRegistry:
+def build_registry(state: SignState) -> MibRegistry:
     """Build the full SNMP object registry for ``state``."""
     reg = MibRegistry()
     _register_system_group(reg, state)

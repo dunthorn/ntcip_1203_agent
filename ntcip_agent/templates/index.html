@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NTCIP 1203 DMS Simulator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      background: #1a1d23;
+      color: #d0d4dc;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ---- Header ---- */
+    header {
+      background: #12151a;
+      border-bottom: 1px solid #2e3340;
+      padding: 0 20px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e8eaf0;
+      letter-spacing: 0.02em;
+    }
+    header .subtitle {
+      font-size: 12px;
+      color: #5a6070;
+    }
+
+    /* ---- Layout ---- */
+    .workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+      width: 220px;
+      background: #12151a;
+      border-right: 1px solid #2e3340;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .sidebar-title {
+      padding: 12px 16px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #5a6070;
+    }
+    .sign-list {
+      list-style: none;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .sign-list li {
+      cursor: pointer;
+      padding: 10px 16px;
+      border-left: 3px solid transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .sign-list li:hover { background: #1e2330; }
+    .sign-list li.selected {
+      background: #1e2330;
+      border-left-color: #4a90d9;
+    }
+    .sign-list .sign-name { font-weight: 500; color: #c8ccd6; }
+    .sign-list .sign-port { font-size: 11px; color: #5a6070; }
+    .sign-list .sign-error-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #3a4050;
+      margin-right: 6px;
+    }
+    .sign-list .sign-error-dot.has-error { background: #e05252; }
+
+    /* ---- Main panel ---- */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .placeholder {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3a4050;
+      font-size: 15px;
+    }
+
+    /* ---- Cards ---- */
+    .card {
+      background: #1e2330;
+      border: 1px solid #2e3340;
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .card-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #5a6070;
+      margin-bottom: 14px;
+    }
+
+    /* ---- Info grid ---- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px 20px;
+    }
+    .info-item label {
+      display: block;
+      font-size: 11px;
+      color: #5a6070;
+      margin-bottom: 2px;
+    }
+    .info-item span {
+      font-size: 13px;
+      color: #c8ccd6;
+      font-weight: 500;
+    }
+
+    /* ---- Control mode ---- */
+    .mode-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mode-btn {
+      padding: 7px 18px;
+      border: 1px solid #3a4050;
+      border-radius: 5px;
+      background: #12151a;
+      color: #8892a4;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+    .mode-btn:hover { border-color: #4a6080; color: #c8ccd6; }
+    .mode-btn.active {
+      background: #1e3a5f;
+      border-color: #4a90d9;
+      color: #7ab8f5;
+    }
+
+    /* ---- Error checkboxes ---- */
+    .error-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 6px 16px;
+    }
+    .error-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .error-item:hover { background: #252b38; }
+    .error-item input[type=checkbox] {
+      width: 15px; height: 15px;
+      accent-color: #e05252;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .error-item span { font-size: 12px; color: #a0a8b8; }
+    .error-item input:checked + span { color: #e07070; }
+
+    /* ---- Sign face / MULTI renderer ---- */
+    .sign-face-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .sign-face {
+      background: #000;
+      border: 2px solid #3a4050;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      gap: 0;
+      min-height: 60px;
+      width: 100%;
+      max-width: 580px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sign-line {
+      color: #ffd700;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1.3;
+      text-align: center;
+      white-space: pre;
+      text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+    }
+    .sign-no-msg {
+      color: #2a3040;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    .multi-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .multi-row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+    .multi-row label {
+      font-size: 11px;
+      color: #5a6070;
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+    .multi-row code {
+      font-size: 12px;
+      color: #a0b8d8;
+      background: #12151a;
+      padding: 2px 6px;
+      border-radius: 3px;
+      word-break: break-all;
+    }
+    .multi-row .owner-val {
+      font-size: 12px;
+      color: #7a8898;
+    }
+
+    /* ---- Refresh indicator ---- */
+    .refresh-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #3a4050;
+      padding: 6px 24px;
+      flex-shrink: 0;
+    }
+    .refresh-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #3a4050;
+      transition: background 0.15s;
+    }
+    .refresh-dot.pulse { background: #4a90d9; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>NTCIP 1203 DMS Simulator</h1>
+  <span class="subtitle">Web Control Panel</span>
+</header>
+
+<div class="workspace">
+  <nav class="sidebar">
+    <div class="sidebar-title">Signs</div>
+    <ul class="sign-list" id="signList"></ul>
+  </nav>
+
+  <main class="main" id="main">
+    <div class="placeholder" id="placeholder">Select a sign to view details</div>
+    <div id="detail" style="display:none; flex-direction:column; gap:20px;"></div>
+  </main>
+</div>
+
+<div class="refresh-bar">
+  <span class="refresh-dot" id="refreshDot"></span>
+  <span id="refreshLabel">Connecting…</span>
+</div>
+
+<script>
+/* ================================================================
+   State
+   ================================================================ */
+let signs = [];
+let meta = { short_error_bits: {}, controller_error_bits: {}, control_mode_names: {} };
+let selectedIdx = null;
+let pendingUpdate = false;
+
+/* ================================================================
+   Fetch helpers
+   ================================================================ */
+async function fetchJSON(url, opts) {
+  const r = await fetch(url, opts);
+  if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+  return r.json();
+}
+
+async function postJSON(url, body) {
+  return fetchJSON(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+/* ================================================================
+   MULTI string renderer
+   ================================================================ */
+function renderMulti(multiStr) {
+  if (!multiStr) return '<div class="sign-no-msg">No active message</div>';
+
+  // Convert known structural tags to placeholders, strip everything else
+  let text = multiStr
+    .replace(/\[nl[^\]]*\]/gi, '\n')
+    .replace(/\[np[^\]]*\]/gi, '\f')
+    .replace(/\[[^\]]*\]/g, '');
+
+  // Show first page only
+  const page = text.split('\f')[0];
+  const lines = page.split('\n');
+
+  return lines.map(l =>
+    `<div class="sign-line">${escapeHtml(l) || ' '}</div>`
+  ).join('');
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/* ================================================================
+   Sign list sidebar
+   ================================================================ */
+function renderSidebar() {
+  const ul = document.getElementById('signList');
+  ul.innerHTML = '';
+  signs.forEach((sign, i) => {
+    const hasError = sign.short_errors !== 0 || sign.controller_errors !== 0;
+    const li = document.createElement('li');
+    li.dataset.idx = i;
+    li.className = (i === selectedIdx) ? 'selected' : '';
+    li.innerHTML = `
+      <div class="sign-name">
+        <span class="sign-error-dot ${hasError ? 'has-error' : ''}"></span>${escapeHtml(sign.name)}
+      </div>
+      <div class="sign-port">UDP :${sign.port}</div>`;
+    li.addEventListener('click', () => selectSign(i));
+    ul.appendChild(li);
+  });
+}
+
+/* ================================================================
+   Detail panel
+   ================================================================ */
+function selectSign(idx) {
+  selectedIdx = idx;
+  renderSidebar();
+  renderDetail();
+}
+
+function renderDetail() {
+  if (selectedIdx === null || !signs[selectedIdx]) return;
+  const sign = signs[selectedIdx];
+
+  document.getElementById('placeholder').style.display = 'none';
+  const detail = document.getElementById('detail');
+  detail.style.display = 'flex';
+
+  detail.innerHTML = `
+    ${cardInfo(sign)}
+    ${cardControlMode(sign)}
+    ${cardShortErrors(sign)}
+    ${cardControllerErrors(sign)}
+    ${cardMessage(sign)}
+  `;
+
+  // Wire up control mode buttons
+  detail.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => setControlMode(sign.index, parseInt(btn.dataset.mode)));
+  });
+
+  // Wire up short-error checkboxes
+  detail.querySelectorAll('.short-error-cb').forEach(cb => {
+    cb.addEventListener('change', () => commitShortErrors(sign.index));
+  });
+
+  // Wire up controller-error checkboxes
+  detail.querySelectorAll('.ctrl-error-cb').forEach(cb => {
+    cb.addEventListener('change', () => commitControllerErrors(sign.index));
+  });
+}
+
+/* ---- Cards ---- */
+function cardInfo(sign) {
+  return `
+  <div class="card">
+    <div class="card-title">Sign Information</div>
+    <div class="info-grid">
+      <div class="info-item"><label>Name</label><span>${escapeHtml(sign.name)}</span></div>
+      <div class="info-item"><label>SNMP Port</label><span>${sign.port}</span></div>
+      <div class="info-item"><label>Sign Type</label><span>${escapeHtml(sign.sign_type)}</span></div>
+      <div class="info-item"><label>Dimensions</label><span>${sign.width_pixels} × ${sign.height_pixels} px</span></div>
+      <div class="info-item"><label>Color Scheme</label><span>${escapeHtml(sign.color_scheme)}</span></div>
+    </div>
+  </div>`;
+}
+
+function cardControlMode(sign) {
+  const modeNames = meta.control_mode_names || {};
+  const buttons = Object.entries(modeNames).map(([code, name]) => {
+    const active = parseInt(code) === sign.control_mode ? ' active' : '';
+    return `<button class="mode-btn${active}" data-mode="${code}">${name}</button>`;
+  }).join('');
+  return `
+  <div class="card">
+    <div class="card-title">Control Mode</div>
+    <div class="mode-btns">${buttons}</div>
+  </div>`;
+}
+
+function cardShortErrors(sign) {
+  const bits = meta.short_error_bits || {};
+  const checks = Object.entries(bits).map(([bit, label]) => {
+    const mask = 1 << parseInt(bit);
+    const checked = (sign.short_errors & mask) ? ' checked' : '';
+    return `
+    <label class="error-item">
+      <input type="checkbox" class="short-error-cb" data-bit="${bit}"${checked}>
+      <span>${escapeHtml(label)}</span>
+    </label>`;
+  }).join('');
+  return `
+  <div class="card">
+    <div class="card-title">Short Error Status</div>
+    <div class="error-grid">${checks}</div>
+  </div>`;
+}
+
+function cardControllerErrors(sign) {
+  const bits = meta.controller_error_bits || {};
+  const checks = Object.entries(bits).map(([bit, label]) => {
+    const mask = 1 << parseInt(bit);
+    const checked = (sign.controller_errors & mask) ? ' checked' : '';
+    return `
+    <label class="error-item">
+      <input type="checkbox" class="ctrl-error-cb" data-bit="${bit}"${checked}>
+      <span>${escapeHtml(label)}</span>
+    </label>`;
+  }).join('');
+  return `
+  <div class="card">
+    <div class="card-title">Controller Error Status</div>
+    <div class="error-grid">${checks}</div>
+  </div>`;
+}
+
+function cardMessage(sign) {
+  const msg = sign.active_message;
+  const faceContent = renderMulti(msg.multi);
+  const multiRow = msg.has_message
+    ? `<div class="multi-row"><label>MULTI</label><code>${escapeHtml(msg.multi)}</code></div>`
+    : '';
+  const ownerRow = msg.has_message && msg.owner
+    ? `<div class="multi-row"><label>Owner</label><span class="owner-val">${escapeHtml(msg.owner)}</span></div>`
+    : '';
+  return `
+  <div class="card">
+    <div class="card-title">Active Message</div>
+    <div class="sign-face-wrap">
+      <div class="sign-face">${faceContent}</div>
+    </div>
+    <div class="multi-meta">
+      ${multiRow}
+      ${ownerRow}
+    </div>
+  </div>`;
+}
+
+/* ================================================================
+   API write actions
+   ================================================================ */
+async function setControlMode(idx, mode) {
+  try {
+    await postJSON(`/api/signs/${idx}/control_mode`, { mode });
+    await refreshData();
+  } catch (e) { console.error('setControlMode:', e); }
+}
+
+function readBitmask(checkboxClass) {
+  let value = 0;
+  document.querySelectorAll(`.${checkboxClass}`).forEach(cb => {
+    if (cb.checked) value |= (1 << parseInt(cb.dataset.bit));
+  });
+  return value;
+}
+
+async function commitShortErrors(idx) {
+  const value = readBitmask('short-error-cb');
+  try {
+    await postJSON(`/api/signs/${idx}/short_errors`, { value });
+  } catch (e) { console.error('commitShortErrors:', e); }
+}
+
+async function commitControllerErrors(idx) {
+  const value = readBitmask('ctrl-error-cb');
+  try {
+    await postJSON(`/api/signs/${idx}/controller_errors`, { value });
+  } catch (e) { console.error('commitControllerErrors:', e); }
+}
+
+/* ================================================================
+   Polling / refresh
+   ================================================================ */
+const refreshDot = document.getElementById('refreshDot');
+const refreshLabel = document.getElementById('refreshLabel');
+
+async function refreshData() {
+  refreshDot.classList.add('pulse');
+  try {
+    signs = await fetchJSON('/api/signs');
+    refreshLabel.textContent = `Last updated ${new Date().toLocaleTimeString()}`;
+    renderSidebar();
+    if (selectedIdx !== null) renderDetail();
+  } catch (e) {
+    refreshLabel.textContent = 'Connection error';
+  } finally {
+    refreshDot.classList.remove('pulse');
+  }
+}
+
+async function init() {
+  try {
+    meta = await fetchJSON('/api/meta');
+  } catch (e) { console.warn('Could not load meta:', e); }
+  await refreshData();
+  if (selectedIdx === null && signs.length > 0) selectSign(0);
+  setInterval(refreshData, 2000);
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,11 +1,9 @@
 """Agent configuration: network/transport settings and sign properties.
 
 The configuration is stored as a JSON file (see ``config.example.json`` at
-the repository root). It covers the items called out by the project
-specification: IP address / bind address, connection type (TCP or UDP),
-port, read-only and read-write SNMP community strings, and the sign
-properties shown in ``artifacts/config_screenshot.jpg`` (sign type,
-technology, dimensions, color scheme, max graphics, font management).
+the repository root). Network settings (host, transport, community strings,
+web UI port) are shared across all signs. Each entry in the ``signs`` array
+adds one simulated sign on its own SNMP port.
 """
 
 from __future__ import annotations
@@ -59,10 +57,10 @@ COLOR_SCHEMES = {
 @dataclass
 class NetworkConfig:
     host: str = "0.0.0.0"
-    port: int = 161
     transport: str = "udp"  # "udp" or "tcp"
     read_community: str = "public"
     write_community: str = "public"
+    web_port: int = 8080
 
     def __post_init__(self) -> None:
         transport = self.transport.lower()
@@ -75,6 +73,8 @@ class NetworkConfig:
 
 @dataclass
 class SignConfig:
+    port: int = 161
+    name: str = ""
     sign_type: str = "vmsFull"
     sign_technology: List[str] = field(default_factory=lambda: ["other", "led"])
     sign_height_pixels: int = 27
@@ -124,7 +124,7 @@ class SignConfig:
 @dataclass
 class AgentConfig:
     network: NetworkConfig = field(default_factory=NetworkConfig)
-    sign: SignConfig = field(default_factory=SignConfig)
+    signs: List[SignConfig] = field(default_factory=lambda: [SignConfig()])
 
     @classmethod
     def default(cls) -> "AgentConfig":
@@ -135,11 +135,15 @@ class AgentConfig:
         with open(path, "r") as f:
             data: Dict[str, Any] = json.load(f)
         network = NetworkConfig(**data.get("network", {}))
-        sign = SignConfig(**data.get("sign", {}))
-        return cls(network=network, sign=sign)
+        signs_data = data.get("signs", [])
+        signs = [SignConfig(**s) for s in signs_data] if signs_data else [SignConfig()]
+        return cls(network=network, signs=signs)
 
     def save(self, path: str) -> None:
-        data = {"network": asdict(self.network), "sign": asdict(self.sign)}
+        data = {
+            "network": asdict(self.network),
+            "signs": [asdict(s) for s in self.signs],
+        }
         with open(path, "w") as f:
             json.dump(data, f, indent=2)
             f.write("\n")

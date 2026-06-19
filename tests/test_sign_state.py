@@ -25,7 +25,7 @@ from ntcip_agent.sign_state import (
 
 
 def new_state() -> SignState:
-    return SignState(AgentConfig.default())
+    return SignState(AgentConfig.default().signs[0])
 
 
 class TestInitialState(unittest.TestCase):

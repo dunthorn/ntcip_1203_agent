@@ -20,7 +20,7 @@ from typing import Optional, Tuple
 
 from . import ber
 from .ber import BerError, Value
-from .config import AgentConfig
+from .config import NetworkConfig, SignConfig
 from .errors import SetError
 from .mib_tree import MibRegistry, build_registry
 from .sign_state import SignState
@@ -41,10 +41,11 @@ logger = logging.getLogger(__name__)
 class DmsAgent:
     """Holds the simulated sign state/registry and answers SNMP PDUs."""
 
-    def __init__(self, config: AgentConfig):
-        self.config = config
-        self.state = SignState(config)
-        self.registry: MibRegistry = build_registry(self.state, config)
+    def __init__(self, network: NetworkConfig, sign: SignConfig):
+        self.network = network
+        self.sign = sign
+        self.state = SignState(sign)
+        self.registry: MibRegistry = build_registry(self.state)
 
     def handle_message(self, data: bytes) -> Optional[bytes]:
         try:
@@ -58,17 +59,17 @@ class DmsAgent:
         if pdu.pdu_type == ber.TAG_GET_REQUEST:
             response = self._handle_get(pdu, next_request=False)
             community_ok = (
-                message.community == self.config.network.read_community.encode()
+                message.community == self.network.read_community.encode()
             )
         elif pdu.pdu_type == ber.TAG_GET_NEXT_REQUEST:
             response = self._handle_get(pdu, next_request=True)
             community_ok = (
-                message.community == self.config.network.read_community.encode()
+                message.community == self.network.read_community.encode()
             )
         elif pdu.pdu_type == ber.TAG_SET_REQUEST:
             response = self._handle_set(pdu)
             community_ok = (
-                message.community == self.config.network.write_community.encode()
+                message.community == self.network.write_community.encode()
             )
         else:
             logger.debug("ignoring unsupported PDU type 0x%02x", pdu.pdu_type)
@@ -228,9 +229,9 @@ class TcpServer(socketserver.ThreadingTCPServer):
         super().__init__(address, _TcpHandler)
 
 
-def create_server(config: AgentConfig) -> socketserver.BaseServer:
-    agent = DmsAgent(config)
-    address = (config.network.host, config.network.port)
-    if config.network.transport == "tcp":
+def create_server(network: NetworkConfig, sign: SignConfig) -> socketserver.BaseServer:
+    agent = DmsAgent(network, sign)
+    address = (network.host, sign.port)
+    if network.transport == "tcp":
         return TcpServer(address, agent)
     return UdpServer(address, agent)

@@ -19,7 +19,7 @@ from dataclasses import dataclass, field
 from typing import Dict, Tuple
 
 from .ber import Value
-from .config import AgentConfig
+from .config import SignConfig
 from .crc import compute_message_crc
 from .errors import SetError
 from .snmp_message import ERR_GEN_ERR, ERR_NO_SUCH_NAME
@@ -150,8 +150,8 @@ class SignState:
     VOLATILE_MEMORY_BYTES = 16000
     GRAPHIC_MEMORY_BYTES = 1048576
 
-    def __init__(self, config: AgentConfig):
-        self.config = config
+    def __init__(self, sign_config: SignConfig):
+        self.sign_config = sign_config
         self.start_time = time.monotonic()
 
         self.scalars: Dict[str, Value] = {}
@@ -198,7 +198,7 @@ class SignState:
         self.scalars["1.3.6.1.2.1.1.7.0"] = Value.integer(72)
 
     def _apply_sign_config(self) -> None:
-        for oid, value in self.config.sign.scalar_overrides().items():
+        for oid, value in self.sign_config.scalar_overrides().items():
             self.scalars[oid] = value
 
     def _init_messages(self) -> None:
