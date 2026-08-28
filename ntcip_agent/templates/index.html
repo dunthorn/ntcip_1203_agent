@@ -556,10 +556,10 @@ function renderDetail() {
 
   detail.innerHTML = `
     ${cardInfo(sign)}
+    ${cardMessage(sign)}
     ${cardControlMode(sign)}
     ${cardShortErrors(sign)}
     ${cardControllerErrors(sign)}
-    ${cardMessage(sign)}
   `;
 
   // Wire up control mode buttons
